@@ -1,0 +1,2457 @@
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m0plus
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main_cm0p.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.code	16
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB452:
+  27              		.file 1 "main_cm0p.c"
+   1:main_cm0p.c   **** /******************************************************************************
+   2:main_cm0p.c   **** * File Name: main_cm0p.c
+   3:main_cm0p.c   **** *
+   4:main_cm0p.c   **** * Version: 1.10
+   5:main_cm0p.c   **** *
+   6:main_cm0p.c   **** * Description: This file main application code for the CE223726 EmWin Graphics
+   7:main_cm0p.c   **** *				library TFT Display, for the CM0+ processor.  The only action
+   8:main_cm0p.c   **** *				this file performs is to start the CM4 processor.
+   9:main_cm0p.c   **** *
+  10:main_cm0p.c   **** * Hardware Dependency: CY8CKIT-028-TFT TFT Display Shield
+  11:main_cm0p.c   **** *					   CY8CKIT-062-BLE PSoC6 BLE Pioneer Kit
+  12:main_cm0p.c   **** *
+  13:main_cm0p.c   **** *******************************************************************************
+  14:main_cm0p.c   **** * Copyright (2018), Cypress Semiconductor Corporation. All rights reserved.
+  15:main_cm0p.c   **** *******************************************************************************
+  16:main_cm0p.c   **** * This software, including source code, documentation and related materials
+  17:main_cm0p.c   **** * (“Software”), is owned by Cypress Semiconductor Corporation or one of its
+  18:main_cm0p.c   **** * subsidiaries (“Cypress”) and is protected by and subject to worldwide patent
+  19:main_cm0p.c   **** * protection (United States and foreign), United States copyright laws and
+  20:main_cm0p.c   **** * international treaty provisions. Therefore, you may use this Software only
+  21:main_cm0p.c   **** * as provided in the license agreement accompanying the software package from
+  22:main_cm0p.c   **** * which you obtained this Software (“EULA”).
+  23:main_cm0p.c   **** *
+  24:main_cm0p.c   **** * If no EULA applies, Cypress hereby grants you a personal, nonexclusive,
+  25:main_cm0p.c   **** * non-transferable license to copy, modify, and compile the Software source
+  26:main_cm0p.c   **** * code solely for use in connection with Cypress’s integrated circuit products.
+  27:main_cm0p.c   **** * Any reproduction, modification, translation, compilation, or representation
+  28:main_cm0p.c   **** * of this Software except as specified above is prohibited without the express
+  29:main_cm0p.c   **** * written permission of Cypress.
+  30:main_cm0p.c   **** *
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 2
+
+
+  31:main_cm0p.c   **** * Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, 
+  32:main_cm0p.c   **** * EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED 
+  33:main_cm0p.c   **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress 
+  34:main_cm0p.c   **** * reserves the right to make changes to the Software without notice. Cypress 
+  35:main_cm0p.c   **** * does not assume any liability arising out of the application or use of the 
+  36:main_cm0p.c   **** * Software or any product or circuit described in the Software. Cypress does 
+  37:main_cm0p.c   **** * not authorize its products for use in any products where a malfunction or 
+  38:main_cm0p.c   **** * failure of the Cypress product may reasonably be expected to result in 
+  39:main_cm0p.c   **** * significant property damage, injury or death (“High Risk Product”). By 
+  40:main_cm0p.c   **** * including Cypress’s product in a High Risk Product, the manufacturer of such 
+  41:main_cm0p.c   **** * system or application assumes all risk of such use and in doing so agrees to 
+  42:main_cm0p.c   **** * indemnify Cypress against all liability.
+  43:main_cm0p.c   **** *******************************************************************************/
+  44:main_cm0p.c   **** #include "project.h"
+  45:main_cm0p.c   **** 
+  46:main_cm0p.c   **** int main(void)
+  47:main_cm0p.c   **** {
+  28              		.loc 1 47 0
+  29              		.cfi_startproc
+  30              		@ Volatile: function does not return.
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 10B5     		push	{r4, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 4, -8
+  36              		.cfi_offset 14, -4
+  48:main_cm0p.c   ****     /* __enable_irq(); */ /* Enable global interrupts. */
+  49:main_cm0p.c   **** 	
+  50:main_cm0p.c   ****     /* Enable CM4.  CY_CORTEX_M4_APPL_ADDR must be updated if CM4 memory layout is changed. */
+  51:main_cm0p.c   ****     Cy_SysEnableCM4(CY_CORTEX_M4_APPL_ADDR); 
+  37              		.loc 1 51 0
+  38 0002 0348     		ldr	r0, .L3
+  39 0004 FFF7FEFF 		bl	Cy_SysEnableCM4
+  40              	.LVL0:
+  41              	.L2:
+  52:main_cm0p.c   **** 
+  53:main_cm0p.c   ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  54:main_cm0p.c   **** 
+  55:main_cm0p.c   ****     for(;;)
+  56:main_cm0p.c   ****     {
+  57:main_cm0p.c   ****         /* Place your application code here. */
+  58:main_cm0p.c   **** 		Cy_SysPm_DeepSleep(CY_SYSPM_WAIT_FOR_INTERRUPT);
+  42              		.loc 1 58 0 discriminator 1
+  43 0008 0020     		movs	r0, #0
+  44 000a FFF7FEFF 		bl	Cy_SysPm_CpuEnterDeepSleep
+  45              	.LVL1:
+  46 000e FBE7     		b	.L2
+  47              	.L4:
+  48              		.align	2
+  49              	.L3:
+  50 0010 00000810 		.word	268959744
+  51              		.cfi_endproc
+  52              	.LFE452:
+  53              		.size	main, .-main
+  54              		.text
+  55              	.Letext0:
+  56              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 3
+
+
+  57              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+  58              		.file 4 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/device/cy_device.h"
+  59              		.file 5 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/syspm/cy_syspm.h"
+  60              		.file 6 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/sar/cy_sar.h"
+  61              		.file 7 "Generated_Source\\PSoC6\\pdl\\drivers/peripheral/scb/cy_scb_uart.h"
+  62              		.file 8 "Generated_Source\\PSoC6/ADC.h"
+  63              		.file 9 "Generated_Source\\PSoC6/UART.h"
+  64              		.file 10 "./system_psoc6.h"
+  65              		.section	.debug_info,"",%progbits
+  66              	.Ldebug_info0:
+  67 0000 35080000 		.4byte	0x835
+  68 0004 0400     		.2byte	0x4
+  69 0006 00000000 		.4byte	.Ldebug_abbrev0
+  70 000a 04       		.byte	0x4
+  71 000b 01       		.uleb128 0x1
+  72 000c 9D070000 		.4byte	.LASF161
+  73 0010 0C       		.byte	0xc
+  74 0011 B0000000 		.4byte	.LASF162
+  75 0015 69000000 		.4byte	.LASF163
+  76 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  77 001d 00000000 		.4byte	0
+  78 0021 00000000 		.4byte	.Ldebug_line0
+  79 0025 02       		.uleb128 0x2
+  80 0026 02       		.byte	0x2
+  81 0027 05       		.byte	0x5
+  82 0028 FF060000 		.4byte	.LASF0
+  83 002c 02       		.uleb128 0x2
+  84 002d 01       		.byte	0x1
+  85 002e 08       		.byte	0x8
+  86 002f B4060000 		.4byte	.LASF1
+  87 0033 02       		.uleb128 0x2
+  88 0034 01       		.byte	0x1
+  89 0035 06       		.byte	0x6
+  90 0036 D2010000 		.4byte	.LASF2
+  91 003a 03       		.uleb128 0x3
+  92 003b D8000000 		.4byte	.LASF3
+  93 003f 02       		.byte	0x2
+  94 0040 1D       		.byte	0x1d
+  95 0041 2C000000 		.4byte	0x2c
+  96 0045 03       		.uleb128 0x3
+  97 0046 68030000 		.4byte	.LASF4
+  98 004a 02       		.byte	0x2
+  99 004b 29       		.byte	0x29
+ 100 004c 25000000 		.4byte	0x25
+ 101 0050 03       		.uleb128 0x3
+ 102 0051 63080000 		.4byte	.LASF5
+ 103 0055 02       		.byte	0x2
+ 104 0056 2B       		.byte	0x2b
+ 105 0057 5B000000 		.4byte	0x5b
+ 106 005b 02       		.uleb128 0x2
+ 107 005c 02       		.byte	0x2
+ 108 005d 07       		.byte	0x7
+ 109 005e 0F030000 		.4byte	.LASF6
+ 110 0062 02       		.uleb128 0x2
+ 111 0063 04       		.byte	0x4
+ 112 0064 05       		.byte	0x5
+ 113 0065 72020000 		.4byte	.LASF7
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 4
+
+
+ 114 0069 03       		.uleb128 0x3
+ 115 006a 41030000 		.4byte	.LASF8
+ 116 006e 02       		.byte	0x2
+ 117 006f 41       		.byte	0x41
+ 118 0070 74000000 		.4byte	0x74
+ 119 0074 02       		.uleb128 0x2
+ 120 0075 04       		.byte	0x4
+ 121 0076 07       		.byte	0x7
+ 122 0077 F4030000 		.4byte	.LASF9
+ 123 007b 02       		.uleb128 0x2
+ 124 007c 08       		.byte	0x8
+ 125 007d 05       		.byte	0x5
+ 126 007e C4010000 		.4byte	.LASF10
+ 127 0082 02       		.uleb128 0x2
+ 128 0083 08       		.byte	0x8
+ 129 0084 07       		.byte	0x7
+ 130 0085 35010000 		.4byte	.LASF11
+ 131 0089 04       		.uleb128 0x4
+ 132 008a 04       		.byte	0x4
+ 133 008b 05       		.byte	0x5
+ 134 008c 696E7400 		.ascii	"int\000"
+ 135 0090 02       		.uleb128 0x2
+ 136 0091 04       		.byte	0x4
+ 137 0092 07       		.byte	0x7
+ 138 0093 D5030000 		.4byte	.LASF12
+ 139 0097 03       		.uleb128 0x3
+ 140 0098 5F090000 		.4byte	.LASF13
+ 141 009c 03       		.byte	0x3
+ 142 009d 18       		.byte	0x18
+ 143 009e 3A000000 		.4byte	0x3a
+ 144 00a2 03       		.uleb128 0x3
+ 145 00a3 A8010000 		.4byte	.LASF14
+ 146 00a7 03       		.byte	0x3
+ 147 00a8 20       		.byte	0x20
+ 148 00a9 45000000 		.4byte	0x45
+ 149 00ad 03       		.uleb128 0x3
+ 150 00ae BB020000 		.4byte	.LASF15
+ 151 00b2 03       		.byte	0x3
+ 152 00b3 24       		.byte	0x24
+ 153 00b4 50000000 		.4byte	0x50
+ 154 00b8 03       		.uleb128 0x3
+ 155 00b9 02090000 		.4byte	.LASF16
+ 156 00bd 03       		.byte	0x3
+ 157 00be 30       		.byte	0x30
+ 158 00bf 69000000 		.4byte	0x69
+ 159 00c3 02       		.uleb128 0x2
+ 160 00c4 04       		.byte	0x4
+ 161 00c5 07       		.byte	0x7
+ 162 00c6 5D050000 		.4byte	.LASF17
+ 163 00ca 05       		.uleb128 0x5
+ 164 00cb B8000000 		.4byte	0xb8
+ 165 00cf 02       		.uleb128 0x2
+ 166 00d0 08       		.byte	0x8
+ 167 00d1 04       		.byte	0x4
+ 168 00d2 2F080000 		.4byte	.LASF18
+ 169 00d6 06       		.uleb128 0x6
+ 170 00d7 B8       		.byte	0xb8
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 5
+
+
+ 171 00d8 04       		.byte	0x4
+ 172 00d9 34       		.byte	0x34
+ 173 00da E7040000 		.4byte	0x4e7
+ 174 00de 07       		.uleb128 0x7
+ 175 00df 0A010000 		.4byte	.LASF19
+ 176 00e3 04       		.byte	0x4
+ 177 00e4 37       		.byte	0x37
+ 178 00e5 B8000000 		.4byte	0xb8
+ 179 00e9 00       		.byte	0
+ 180 00ea 07       		.uleb128 0x7
+ 181 00eb 36030000 		.4byte	.LASF20
+ 182 00ef 04       		.byte	0x4
+ 183 00f0 38       		.byte	0x38
+ 184 00f1 B8000000 		.4byte	0xb8
+ 185 00f5 04       		.byte	0x4
+ 186 00f6 07       		.uleb128 0x7
+ 187 00f7 89020000 		.4byte	.LASF21
+ 188 00fb 04       		.byte	0x4
+ 189 00fc 39       		.byte	0x39
+ 190 00fd B8000000 		.4byte	0xb8
+ 191 0101 08       		.byte	0x8
+ 192 0102 07       		.uleb128 0x7
+ 193 0103 8D060000 		.4byte	.LASF22
+ 194 0107 04       		.byte	0x4
+ 195 0108 3A       		.byte	0x3a
+ 196 0109 B8000000 		.4byte	0xb8
+ 197 010d 0C       		.byte	0xc
+ 198 010e 07       		.uleb128 0x7
+ 199 010f FB040000 		.4byte	.LASF23
+ 200 0113 04       		.byte	0x4
+ 201 0114 3B       		.byte	0x3b
+ 202 0115 B8000000 		.4byte	0xb8
+ 203 0119 10       		.byte	0x10
+ 204 011a 07       		.uleb128 0x7
+ 205 011b 50020000 		.4byte	.LASF24
+ 206 011f 04       		.byte	0x4
+ 207 0120 3C       		.byte	0x3c
+ 208 0121 B8000000 		.4byte	0xb8
+ 209 0125 14       		.byte	0x14
+ 210 0126 07       		.uleb128 0x7
+ 211 0127 EB080000 		.4byte	.LASF25
+ 212 012b 04       		.byte	0x4
+ 213 012c 3D       		.byte	0x3d
+ 214 012d B8000000 		.4byte	0xb8
+ 215 0131 18       		.byte	0x18
+ 216 0132 07       		.uleb128 0x7
+ 217 0133 A7000000 		.4byte	.LASF26
+ 218 0137 04       		.byte	0x4
+ 219 0138 3E       		.byte	0x3e
+ 220 0139 B8000000 		.4byte	0xb8
+ 221 013d 1C       		.byte	0x1c
+ 222 013e 07       		.uleb128 0x7
+ 223 013f 040A0000 		.4byte	.LASF27
+ 224 0143 04       		.byte	0x4
+ 225 0144 3F       		.byte	0x3f
+ 226 0145 B8000000 		.4byte	0xb8
+ 227 0149 20       		.byte	0x20
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 6
+
+
+ 228 014a 07       		.uleb128 0x7
+ 229 014b 31050000 		.4byte	.LASF28
+ 230 014f 04       		.byte	0x4
+ 231 0150 40       		.byte	0x40
+ 232 0151 B8000000 		.4byte	0xb8
+ 233 0155 24       		.byte	0x24
+ 234 0156 07       		.uleb128 0x7
+ 235 0157 290A0000 		.4byte	.LASF29
+ 236 015b 04       		.byte	0x4
+ 237 015c 43       		.byte	0x43
+ 238 015d 97000000 		.4byte	0x97
+ 239 0161 28       		.byte	0x28
+ 240 0162 07       		.uleb128 0x7
+ 241 0163 4F000000 		.4byte	.LASF30
+ 242 0167 04       		.byte	0x4
+ 243 0168 44       		.byte	0x44
+ 244 0169 97000000 		.4byte	0x97
+ 245 016d 29       		.byte	0x29
+ 246 016e 07       		.uleb128 0x7
+ 247 016f FA090000 		.4byte	.LASF31
+ 248 0173 04       		.byte	0x4
+ 249 0174 45       		.byte	0x45
+ 250 0175 97000000 		.4byte	0x97
+ 251 0179 2A       		.byte	0x2a
+ 252 017a 07       		.uleb128 0x7
+ 253 017b E0050000 		.4byte	.LASF32
+ 254 017f 04       		.byte	0x4
+ 255 0180 46       		.byte	0x46
+ 256 0181 97000000 		.4byte	0x97
+ 257 0185 2B       		.byte	0x2b
+ 258 0186 07       		.uleb128 0x7
+ 259 0187 C8040000 		.4byte	.LASF33
+ 260 018b 04       		.byte	0x4
+ 261 018c 47       		.byte	0x47
+ 262 018d 97000000 		.4byte	0x97
+ 263 0191 2C       		.byte	0x2c
+ 264 0192 07       		.uleb128 0x7
+ 265 0193 81080000 		.4byte	.LASF34
+ 266 0197 04       		.byte	0x4
+ 267 0198 48       		.byte	0x48
+ 268 0199 97000000 		.4byte	0x97
+ 269 019d 2D       		.byte	0x2d
+ 270 019e 07       		.uleb128 0x7
+ 271 019f 21020000 		.4byte	.LASF35
+ 272 01a3 04       		.byte	0x4
+ 273 01a4 49       		.byte	0x49
+ 274 01a5 97000000 		.4byte	0x97
+ 275 01a9 2E       		.byte	0x2e
+ 276 01aa 07       		.uleb128 0x7
+ 277 01ab 3C050000 		.4byte	.LASF36
+ 278 01af 04       		.byte	0x4
+ 279 01b0 4A       		.byte	0x4a
+ 280 01b1 97000000 		.4byte	0x97
+ 281 01b5 2F       		.byte	0x2f
+ 282 01b6 07       		.uleb128 0x7
+ 283 01b7 AF050000 		.4byte	.LASF37
+ 284 01bb 04       		.byte	0x4
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 7
+
+
+ 285 01bc 4B       		.byte	0x4b
+ 286 01bd 97000000 		.4byte	0x97
+ 287 01c1 30       		.byte	0x30
+ 288 01c2 07       		.uleb128 0x7
+ 289 01c3 32040000 		.4byte	.LASF38
+ 290 01c7 04       		.byte	0x4
+ 291 01c8 4E       		.byte	0x4e
+ 292 01c9 97000000 		.4byte	0x97
+ 293 01cd 31       		.byte	0x31
+ 294 01ce 07       		.uleb128 0x7
+ 295 01cf CA000000 		.4byte	.LASF39
+ 296 01d3 04       		.byte	0x4
+ 297 01d4 4F       		.byte	0x4f
+ 298 01d5 97000000 		.4byte	0x97
+ 299 01d9 32       		.byte	0x32
+ 300 01da 07       		.uleb128 0x7
+ 301 01db C9030000 		.4byte	.LASF40
+ 302 01df 04       		.byte	0x4
+ 303 01e0 50       		.byte	0x50
+ 304 01e1 97000000 		.4byte	0x97
+ 305 01e5 33       		.byte	0x33
+ 306 01e6 07       		.uleb128 0x7
+ 307 01e7 E2000000 		.4byte	.LASF41
+ 308 01eb 04       		.byte	0x4
+ 309 01ec 51       		.byte	0x51
+ 310 01ed 97000000 		.4byte	0x97
+ 311 01f1 34       		.byte	0x34
+ 312 01f2 07       		.uleb128 0x7
+ 313 01f3 DE080000 		.4byte	.LASF42
+ 314 01f7 04       		.byte	0x4
+ 315 01f8 52       		.byte	0x52
+ 316 01f9 A2000000 		.4byte	0xa2
+ 317 01fd 36       		.byte	0x36
+ 318 01fe 07       		.uleb128 0x7
+ 319 01ff 64070000 		.4byte	.LASF43
+ 320 0203 04       		.byte	0x4
+ 321 0204 53       		.byte	0x53
+ 322 0205 A2000000 		.4byte	0xa2
+ 323 0209 38       		.byte	0x38
+ 324 020a 07       		.uleb128 0x7
+ 325 020b 2F090000 		.4byte	.LASF44
+ 326 020f 04       		.byte	0x4
+ 327 0210 54       		.byte	0x54
+ 328 0211 A2000000 		.4byte	0xa2
+ 329 0215 3A       		.byte	0x3a
+ 330 0216 07       		.uleb128 0x7
+ 331 0217 41020000 		.4byte	.LASF45
+ 332 021b 04       		.byte	0x4
+ 333 021c 55       		.byte	0x55
+ 334 021d 97000000 		.4byte	0x97
+ 335 0221 3C       		.byte	0x3c
+ 336 0222 07       		.uleb128 0x7
+ 337 0223 E0020000 		.4byte	.LASF46
+ 338 0227 04       		.byte	0x4
+ 339 0228 56       		.byte	0x56
+ 340 0229 97000000 		.4byte	0x97
+ 341 022d 3D       		.byte	0x3d
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 8
+
+
+ 342 022e 07       		.uleb128 0x7
+ 343 022f 46070000 		.4byte	.LASF47
+ 344 0233 04       		.byte	0x4
+ 345 0234 57       		.byte	0x57
+ 346 0235 97000000 		.4byte	0x97
+ 347 0239 3E       		.byte	0x3e
+ 348 023a 07       		.uleb128 0x7
+ 349 023b 5D000000 		.4byte	.LASF48
+ 350 023f 04       		.byte	0x4
+ 351 0240 58       		.byte	0x58
+ 352 0241 97000000 		.4byte	0x97
+ 353 0245 3F       		.byte	0x3f
+ 354 0246 07       		.uleb128 0x7
+ 355 0247 EE050000 		.4byte	.LASF49
+ 356 024b 04       		.byte	0x4
+ 357 024c 59       		.byte	0x59
+ 358 024d 97000000 		.4byte	0x97
+ 359 0251 40       		.byte	0x40
+ 360 0252 07       		.uleb128 0x7
+ 361 0253 4C030000 		.4byte	.LASF50
+ 362 0257 04       		.byte	0x4
+ 363 0258 5A       		.byte	0x5a
+ 364 0259 97000000 		.4byte	0x97
+ 365 025d 41       		.byte	0x41
+ 366 025e 07       		.uleb128 0x7
+ 367 025f 95050000 		.4byte	.LASF51
+ 368 0263 04       		.byte	0x4
+ 369 0264 5B       		.byte	0x5b
+ 370 0265 97000000 		.4byte	0x97
+ 371 0269 42       		.byte	0x42
+ 372 026a 07       		.uleb128 0x7
+ 373 026b CC050000 		.4byte	.LASF52
+ 374 026f 04       		.byte	0x4
+ 375 0270 5C       		.byte	0x5c
+ 376 0271 97000000 		.4byte	0x97
+ 377 0275 43       		.byte	0x43
+ 378 0276 07       		.uleb128 0x7
+ 379 0277 92020000 		.4byte	.LASF53
+ 380 027b 04       		.byte	0x4
+ 381 027c 5D       		.byte	0x5d
+ 382 027d 97000000 		.4byte	0x97
+ 383 0281 44       		.byte	0x44
+ 384 0282 07       		.uleb128 0x7
+ 385 0283 00000000 		.4byte	.LASF54
+ 386 0287 04       		.byte	0x4
+ 387 0288 5E       		.byte	0x5e
+ 388 0289 B8000000 		.4byte	0xb8
+ 389 028d 48       		.byte	0x48
+ 390 028e 07       		.uleb128 0x7
+ 391 028f 7B020000 		.4byte	.LASF55
+ 392 0293 04       		.byte	0x4
+ 393 0294 5F       		.byte	0x5f
+ 394 0295 B8000000 		.4byte	0xb8
+ 395 0299 4C       		.byte	0x4c
+ 396 029a 07       		.uleb128 0x7
+ 397 029b 360A0000 		.4byte	.LASF56
+ 398 029f 04       		.byte	0x4
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 9
+
+
+ 399 02a0 60       		.byte	0x60
+ 400 02a1 97000000 		.4byte	0x97
+ 401 02a5 50       		.byte	0x50
+ 402 02a6 07       		.uleb128 0x7
+ 403 02a7 82010000 		.4byte	.LASF57
+ 404 02ab 04       		.byte	0x4
+ 405 02ac 61       		.byte	0x61
+ 406 02ad 97000000 		.4byte	0x97
+ 407 02b1 51       		.byte	0x51
+ 408 02b2 07       		.uleb128 0x7
+ 409 02b3 44090000 		.4byte	.LASF58
+ 410 02b7 04       		.byte	0x4
+ 411 02b8 62       		.byte	0x62
+ 412 02b9 97000000 		.4byte	0x97
+ 413 02bd 52       		.byte	0x52
+ 414 02be 07       		.uleb128 0x7
+ 415 02bf 8E080000 		.4byte	.LASF59
+ 416 02c3 04       		.byte	0x4
+ 417 02c4 63       		.byte	0x63
+ 418 02c5 97000000 		.4byte	0x97
+ 419 02c9 53       		.byte	0x53
+ 420 02ca 07       		.uleb128 0x7
+ 421 02cb 54070000 		.4byte	.LASF60
+ 422 02cf 04       		.byte	0x4
+ 423 02d0 64       		.byte	0x64
+ 424 02d1 97000000 		.4byte	0x97
+ 425 02d5 54       		.byte	0x54
+ 426 02d6 07       		.uleb128 0x7
+ 427 02d7 94010000 		.4byte	.LASF61
+ 428 02db 04       		.byte	0x4
+ 429 02dc 65       		.byte	0x65
+ 430 02dd 97000000 		.4byte	0x97
+ 431 02e1 55       		.byte	0x55
+ 432 02e2 07       		.uleb128 0x7
+ 433 02e3 40080000 		.4byte	.LASF62
+ 434 02e7 04       		.byte	0x4
+ 435 02e8 66       		.byte	0x66
+ 436 02e9 97000000 		.4byte	0x97
+ 437 02ed 56       		.byte	0x56
+ 438 02ee 07       		.uleb128 0x7
+ 439 02ef 55040000 		.4byte	.LASF63
+ 440 02f3 04       		.byte	0x4
+ 441 02f4 67       		.byte	0x67
+ 442 02f5 97000000 		.4byte	0x97
+ 443 02f9 57       		.byte	0x57
+ 444 02fa 07       		.uleb128 0x7
+ 445 02fb 1C000000 		.4byte	.LASF64
+ 446 02ff 04       		.byte	0x4
+ 447 0300 68       		.byte	0x68
+ 448 0301 97000000 		.4byte	0x97
+ 449 0305 58       		.byte	0x58
+ 450 0306 07       		.uleb128 0x7
+ 451 0307 C2060000 		.4byte	.LASF65
+ 452 030b 04       		.byte	0x4
+ 453 030c 69       		.byte	0x69
+ 454 030d 97000000 		.4byte	0x97
+ 455 0311 59       		.byte	0x59
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 10
+
+
+ 456 0312 07       		.uleb128 0x7
+ 457 0313 66050000 		.4byte	.LASF66
+ 458 0317 04       		.byte	0x4
+ 459 0318 6E       		.byte	0x6e
+ 460 0319 AD000000 		.4byte	0xad
+ 461 031d 5A       		.byte	0x5a
+ 462 031e 07       		.uleb128 0x7
+ 463 031f C7080000 		.4byte	.LASF67
+ 464 0323 04       		.byte	0x4
+ 465 0324 6F       		.byte	0x6f
+ 466 0325 AD000000 		.4byte	0xad
+ 467 0329 5C       		.byte	0x5c
+ 468 032a 07       		.uleb128 0x7
+ 469 032b 14010000 		.4byte	.LASF68
+ 470 032f 04       		.byte	0x4
+ 471 0330 70       		.byte	0x70
+ 472 0331 97000000 		.4byte	0x97
+ 473 0335 5E       		.byte	0x5e
+ 474 0336 07       		.uleb128 0x7
+ 475 0337 5F060000 		.4byte	.LASF69
+ 476 033b 04       		.byte	0x4
+ 477 033c 71       		.byte	0x71
+ 478 033d 97000000 		.4byte	0x97
+ 479 0341 5F       		.byte	0x5f
+ 480 0342 07       		.uleb128 0x7
+ 481 0343 BB050000 		.4byte	.LASF70
+ 482 0347 04       		.byte	0x4
+ 483 0348 72       		.byte	0x72
+ 484 0349 97000000 		.4byte	0x97
+ 485 034d 60       		.byte	0x60
+ 486 034e 07       		.uleb128 0x7
+ 487 034f 1D060000 		.4byte	.LASF71
+ 488 0353 04       		.byte	0x4
+ 489 0354 73       		.byte	0x73
+ 490 0355 B8000000 		.4byte	0xb8
+ 491 0359 64       		.byte	0x64
+ 492 035a 07       		.uleb128 0x7
+ 493 035b 4C010000 		.4byte	.LASF72
+ 494 035f 04       		.byte	0x4
+ 495 0360 76       		.byte	0x76
+ 496 0361 AD000000 		.4byte	0xad
+ 497 0365 68       		.byte	0x68
+ 498 0366 07       		.uleb128 0x7
+ 499 0367 E2030000 		.4byte	.LASF73
+ 500 036b 04       		.byte	0x4
+ 501 036c 77       		.byte	0x77
+ 502 036d AD000000 		.4byte	0xad
+ 503 0371 6A       		.byte	0x6a
+ 504 0372 07       		.uleb128 0x7
+ 505 0373 76040000 		.4byte	.LASF74
+ 506 0377 04       		.byte	0x4
+ 507 0378 78       		.byte	0x78
+ 508 0379 AD000000 		.4byte	0xad
+ 509 037d 6C       		.byte	0x6c
+ 510 037e 07       		.uleb128 0x7
+ 511 037f 6F070000 		.4byte	.LASF75
+ 512 0383 04       		.byte	0x4
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 11
+
+
+ 513 0384 79       		.byte	0x79
+ 514 0385 AD000000 		.4byte	0xad
+ 515 0389 6E       		.byte	0x6e
+ 516 038a 07       		.uleb128 0x7
+ 517 038b 32070000 		.4byte	.LASF76
+ 518 038f 04       		.byte	0x4
+ 519 0390 7B       		.byte	0x7b
+ 520 0391 97000000 		.4byte	0x97
+ 521 0395 70       		.byte	0x70
+ 522 0396 07       		.uleb128 0x7
+ 523 0397 DE010000 		.4byte	.LASF77
+ 524 039b 04       		.byte	0x4
+ 525 039c 7C       		.byte	0x7c
+ 526 039d 97000000 		.4byte	0x97
+ 527 03a1 71       		.byte	0x71
+ 528 03a2 07       		.uleb128 0x7
+ 529 03a3 80030000 		.4byte	.LASF78
+ 530 03a7 04       		.byte	0x4
+ 531 03a8 7D       		.byte	0x7d
+ 532 03a9 97000000 		.4byte	0x97
+ 533 03ad 72       		.byte	0x72
+ 534 03ae 07       		.uleb128 0x7
+ 535 03af 7E050000 		.4byte	.LASF79
+ 536 03b3 04       		.byte	0x4
+ 537 03b4 7E       		.byte	0x7e
+ 538 03b5 97000000 		.4byte	0x97
+ 539 03b9 73       		.byte	0x73
+ 540 03ba 07       		.uleb128 0x7
+ 541 03bb FD020000 		.4byte	.LASF80
+ 542 03bf 04       		.byte	0x4
+ 543 03c0 80       		.byte	0x80
+ 544 03c1 AD000000 		.4byte	0xad
+ 545 03c5 74       		.byte	0x74
+ 546 03c6 07       		.uleb128 0x7
+ 547 03c7 6E080000 		.4byte	.LASF81
+ 548 03cb 04       		.byte	0x4
+ 549 03cc 81       		.byte	0x81
+ 550 03cd AD000000 		.4byte	0xad
+ 551 03d1 76       		.byte	0x76
+ 552 03d2 07       		.uleb128 0x7
+ 553 03d3 CB020000 		.4byte	.LASF82
+ 554 03d7 04       		.byte	0x4
+ 555 03d8 82       		.byte	0x82
+ 556 03d9 AD000000 		.4byte	0xad
+ 557 03dd 78       		.byte	0x78
+ 558 03de 07       		.uleb128 0x7
+ 559 03df EA060000 		.4byte	.LASF83
+ 560 03e3 04       		.byte	0x4
+ 561 03e4 83       		.byte	0x83
+ 562 03e5 AD000000 		.4byte	0xad
+ 563 03e9 7A       		.byte	0x7a
+ 564 03ea 07       		.uleb128 0x7
+ 565 03eb 98090000 		.4byte	.LASF84
+ 566 03ef 04       		.byte	0x4
+ 567 03f0 86       		.byte	0x86
+ 568 03f1 97000000 		.4byte	0x97
+ 569 03f5 7C       		.byte	0x7c
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 12
+
+
+ 570 03f6 07       		.uleb128 0x7
+ 571 03f7 A7040000 		.4byte	.LASF85
+ 572 03fb 04       		.byte	0x4
+ 573 03fc 87       		.byte	0x87
+ 574 03fd 97000000 		.4byte	0x97
+ 575 0401 7D       		.byte	0x7d
+ 576 0402 07       		.uleb128 0x7
+ 577 0403 30000000 		.4byte	.LASF86
+ 578 0407 04       		.byte	0x4
+ 579 0408 88       		.byte	0x88
+ 580 0409 97000000 		.4byte	0x97
+ 581 040d 7E       		.byte	0x7e
+ 582 040e 07       		.uleb128 0x7
+ 583 040f 22030000 		.4byte	.LASF87
+ 584 0413 04       		.byte	0x4
+ 585 0414 89       		.byte	0x89
+ 586 0415 97000000 		.4byte	0x97
+ 587 0419 7F       		.byte	0x7f
+ 588 041a 07       		.uleb128 0x7
+ 589 041b B5030000 		.4byte	.LASF88
+ 590 041f 04       		.byte	0x4
+ 591 0420 8A       		.byte	0x8a
+ 592 0421 97000000 		.4byte	0x97
+ 593 0425 80       		.byte	0x80
+ 594 0426 07       		.uleb128 0x7
+ 595 0427 1A050000 		.4byte	.LASF89
+ 596 042b 04       		.byte	0x4
+ 597 042c 8D       		.byte	0x8d
+ 598 042d B8000000 		.4byte	0xb8
+ 599 0431 84       		.byte	0x84
+ 600 0432 07       		.uleb128 0x7
+ 601 0433 F3000000 		.4byte	.LASF90
+ 602 0437 04       		.byte	0x4
+ 603 0438 8E       		.byte	0x8e
+ 604 0439 B8000000 		.4byte	0xb8
+ 605 043d 88       		.byte	0x88
+ 606 043e 07       		.uleb128 0x7
+ 607 043f 83090000 		.4byte	.LASF91
+ 608 0443 04       		.byte	0x4
+ 609 0444 8F       		.byte	0x8f
+ 610 0445 B8000000 		.4byte	0xb8
+ 611 0449 8C       		.byte	0x8c
+ 612 044a 07       		.uleb128 0x7
+ 613 044b 48050000 		.4byte	.LASF92
+ 614 044f 04       		.byte	0x4
+ 615 0450 90       		.byte	0x90
+ 616 0451 B8000000 		.4byte	0xb8
+ 617 0455 90       		.byte	0x90
+ 618 0456 07       		.uleb128 0x7
+ 619 0457 96030000 		.4byte	.LASF93
+ 620 045b 04       		.byte	0x4
+ 621 045c 91       		.byte	0x91
+ 622 045d B8000000 		.4byte	0xb8
+ 623 0461 94       		.byte	0x94
+ 624 0462 07       		.uleb128 0x7
+ 625 0463 04050000 		.4byte	.LASF94
+ 626 0467 04       		.byte	0x4
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 13
+
+
+ 627 0468 92       		.byte	0x92
+ 628 0469 B8000000 		.4byte	0xb8
+ 629 046d 98       		.byte	0x98
+ 630 046e 07       		.uleb128 0x7
+ 631 046f 1C070000 		.4byte	.LASF95
+ 632 0473 04       		.byte	0x4
+ 633 0474 93       		.byte	0x93
+ 634 0475 B8000000 		.4byte	0xb8
+ 635 0479 9C       		.byte	0x9c
+ 636 047a 07       		.uleb128 0x7
+ 637 047b 66010000 		.4byte	.LASF96
+ 638 047f 04       		.byte	0x4
+ 639 0480 94       		.byte	0x94
+ 640 0481 B8000000 		.4byte	0xb8
+ 641 0485 A0       		.byte	0xa0
+ 642 0486 07       		.uleb128 0x7
+ 643 0487 2C020000 		.4byte	.LASF97
+ 644 048b 04       		.byte	0x4
+ 645 048c 95       		.byte	0x95
+ 646 048d AD000000 		.4byte	0xad
+ 647 0491 A4       		.byte	0xa4
+ 648 0492 07       		.uleb128 0x7
+ 649 0493 7C070000 		.4byte	.LASF98
+ 650 0497 04       		.byte	0x4
+ 651 0498 96       		.byte	0x96
+ 652 0499 AD000000 		.4byte	0xad
+ 653 049d A6       		.byte	0xa6
+ 654 049e 07       		.uleb128 0x7
+ 655 049f 38060000 		.4byte	.LASF99
+ 656 04a3 04       		.byte	0x4
+ 657 04a4 97       		.byte	0x97
+ 658 04a5 AD000000 		.4byte	0xad
+ 659 04a9 A8       		.byte	0xa8
+ 660 04aa 07       		.uleb128 0x7
+ 661 04ab 09060000 		.4byte	.LASF100
+ 662 04af 04       		.byte	0x4
+ 663 04b0 98       		.byte	0x98
+ 664 04b1 AD000000 		.4byte	0xad
+ 665 04b5 AA       		.byte	0xaa
+ 666 04b6 07       		.uleb128 0x7
+ 667 04b7 85040000 		.4byte	.LASF101
+ 668 04bb 04       		.byte	0x4
+ 669 04bc 99       		.byte	0x99
+ 670 04bd AD000000 		.4byte	0xad
+ 671 04c1 AC       		.byte	0xac
+ 672 04c2 07       		.uleb128 0x7
+ 673 04c3 BC000000 		.4byte	.LASF102
+ 674 04c7 04       		.byte	0x4
+ 675 04c8 9A       		.byte	0x9a
+ 676 04c9 AD000000 		.4byte	0xad
+ 677 04cd AE       		.byte	0xae
+ 678 04ce 07       		.uleb128 0x7
+ 679 04cf D0080000 		.4byte	.LASF103
+ 680 04d3 04       		.byte	0x4
+ 681 04d4 9D       		.byte	0x9d
+ 682 04d5 AD000000 		.4byte	0xad
+ 683 04d9 B0       		.byte	0xb0
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 14
+
+
+ 684 04da 07       		.uleb128 0x7
+ 685 04db D6060000 		.4byte	.LASF104
+ 686 04df 04       		.byte	0x4
+ 687 04e0 9E       		.byte	0x9e
+ 688 04e1 B8000000 		.4byte	0xb8
+ 689 04e5 B4       		.byte	0xb4
+ 690 04e6 00       		.byte	0
+ 691 04e7 03       		.uleb128 0x3
+ 692 04e8 E0040000 		.4byte	.LASF105
+ 693 04ec 04       		.byte	0x4
+ 694 04ed 9F       		.byte	0x9f
+ 695 04ee D6000000 		.4byte	0xd6
+ 696 04f2 02       		.uleb128 0x2
+ 697 04f3 01       		.byte	0x1
+ 698 04f4 08       		.byte	0x8
+ 699 04f5 3B080000 		.4byte	.LASF106
+ 700 04f9 02       		.uleb128 0x2
+ 701 04fa 04       		.byte	0x4
+ 702 04fb 04       		.byte	0x4
+ 703 04fc 17060000 		.4byte	.LASF107
+ 704 0500 02       		.uleb128 0x2
+ 705 0501 08       		.byte	0x8
+ 706 0502 04       		.byte	0x4
+ 707 0503 C4020000 		.4byte	.LASF108
+ 708 0507 08       		.uleb128 0x8
+ 709 0508 01       		.byte	0x1
+ 710 0509 2C000000 		.4byte	0x2c
+ 711 050d 05       		.byte	0x5
+ 712 050e 2305     		.2byte	0x523
+ 713 0510 21050000 		.4byte	0x521
+ 714 0514 09       		.uleb128 0x9
+ 715 0515 67090000 		.4byte	.LASF109
+ 716 0519 00       		.byte	0
+ 717 051a 09       		.uleb128 0x9
+ 718 051b 3D040000 		.4byte	.LASF110
+ 719 051f 01       		.byte	0x1
+ 720 0520 00       		.byte	0
+ 721 0521 0A       		.uleb128 0xa
+ 722 0522 04       		.byte	0x4
+ 723 0523 02       		.uleb128 0x2
+ 724 0524 01       		.byte	0x1
+ 725 0525 02       		.byte	0x2
+ 726 0526 AE060000 		.4byte	.LASF111
+ 727 052a 08       		.uleb128 0x8
+ 728 052b 01       		.byte	0x1
+ 729 052c 2C000000 		.4byte	0x2c
+ 730 0530 06       		.byte	0x6
+ 731 0531 1304     		.2byte	0x413
+ 732 0533 50050000 		.4byte	0x550
+ 733 0537 09       		.uleb128 0x9
+ 734 0538 5A020000 		.4byte	.LASF112
+ 735 053c 00       		.byte	0
+ 736 053d 09       		.uleb128 0x9
+ 737 053e 95060000 		.4byte	.LASF113
+ 738 0542 01       		.byte	0x1
+ 739 0543 09       		.uleb128 0x9
+ 740 0544 A3020000 		.4byte	.LASF114
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 15
+
+
+ 741 0548 02       		.byte	0x2
+ 742 0549 09       		.uleb128 0x9
+ 743 054a AD090000 		.4byte	.LASF115
+ 744 054e 03       		.byte	0x3
+ 745 054f 00       		.byte	0
+ 746 0550 0B       		.uleb128 0xb
+ 747 0551 F3010000 		.4byte	.LASF116
+ 748 0555 06       		.byte	0x6
+ 749 0556 1804     		.2byte	0x418
+ 750 0558 2A050000 		.4byte	0x52a
+ 751 055c 0C       		.uleb128 0xc
+ 752 055d 78       		.byte	0x78
+ 753 055e 06       		.byte	0x6
+ 754 055f 0205     		.2byte	0x502
+ 755 0561 29060000 		.4byte	0x629
+ 756 0565 0D       		.uleb128 0xd
+ 757 0566 7B030000 		.4byte	.LASF117
+ 758 056a 06       		.byte	0x6
+ 759 056b 0405     		.2byte	0x504
+ 760 056d B8000000 		.4byte	0xb8
+ 761 0571 00       		.byte	0
+ 762 0572 0D       		.uleb128 0xd
+ 763 0573 54090000 		.4byte	.LASF118
+ 764 0577 06       		.byte	0x6
+ 765 0578 0505     		.2byte	0x505
+ 766 057a B8000000 		.4byte	0xb8
+ 767 057e 04       		.byte	0x4
+ 768 057f 0D       		.uleb128 0xd
+ 769 0580 69040000 		.4byte	.LASF119
+ 770 0584 06       		.byte	0x6
+ 771 0585 0605     		.2byte	0x506
+ 772 0587 B8000000 		.4byte	0xb8
+ 773 058b 08       		.byte	0x8
+ 774 058c 0D       		.uleb128 0xd
+ 775 058d 71050000 		.4byte	.LASF120
+ 776 0591 06       		.byte	0x6
+ 777 0592 0705     		.2byte	0x507
+ 778 0594 B8000000 		.4byte	0xb8
+ 779 0598 0C       		.byte	0xc
+ 780 0599 0D       		.uleb128 0xd
+ 781 059a 93040000 		.4byte	.LASF121
+ 782 059e 06       		.byte	0x6
+ 783 059f 0805     		.2byte	0x508
+ 784 05a1 B8000000 		.4byte	0xb8
+ 785 05a5 10       		.byte	0x10
+ 786 05a6 0D       		.uleb128 0xd
+ 787 05a7 25090000 		.4byte	.LASF122
+ 788 05ab 06       		.byte	0x6
+ 789 05ac 0905     		.2byte	0x509
+ 790 05ae 50050000 		.4byte	0x550
+ 791 05b2 14       		.byte	0x14
+ 792 05b3 0D       		.uleb128 0xd
+ 793 05b4 86060000 		.4byte	.LASF123
+ 794 05b8 06       		.byte	0x6
+ 795 05b9 0A05     		.2byte	0x50a
+ 796 05bb B8000000 		.4byte	0xb8
+ 797 05bf 18       		.byte	0x18
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 16
+
+
+ 798 05c0 0D       		.uleb128 0xd
+ 799 05c1 F0040000 		.4byte	.LASF124
+ 800 05c5 06       		.byte	0x6
+ 801 05c6 0B05     		.2byte	0x50b
+ 802 05c8 29060000 		.4byte	0x629
+ 803 05cc 1C       		.byte	0x1c
+ 804 05cd 0D       		.uleb128 0xd
+ 805 05ce 13070000 		.4byte	.LASF125
+ 806 05d2 06       		.byte	0x6
+ 807 05d3 0C05     		.2byte	0x50c
+ 808 05d5 B8000000 		.4byte	0xb8
+ 809 05d9 5C       		.byte	0x5c
+ 810 05da 0D       		.uleb128 0xd
+ 811 05db 43000000 		.4byte	.LASF126
+ 812 05df 06       		.byte	0x6
+ 813 05e0 0D05     		.2byte	0x50d
+ 814 05e2 B8000000 		.4byte	0xb8
+ 815 05e6 60       		.byte	0x60
+ 816 05e7 0D       		.uleb128 0xd
+ 817 05e8 FB050000 		.4byte	.LASF127
+ 818 05ec 06       		.byte	0x6
+ 819 05ed 0E05     		.2byte	0x50e
+ 820 05ef B8000000 		.4byte	0xb8
+ 821 05f3 64       		.byte	0x64
+ 822 05f4 0D       		.uleb128 0xd
+ 823 05f5 09070000 		.4byte	.LASF128
+ 824 05f9 06       		.byte	0x6
+ 825 05fa 0F05     		.2byte	0x50f
+ 826 05fc B8000000 		.4byte	0xb8
+ 827 0600 68       		.byte	0x68
+ 828 0601 0D       		.uleb128 0xd
+ 829 0602 EA090000 		.4byte	.LASF129
+ 830 0606 06       		.byte	0x6
+ 831 0607 1005     		.2byte	0x510
+ 832 0609 B8000000 		.4byte	0xb8
+ 833 060d 6C       		.byte	0x6c
+ 834 060e 0D       		.uleb128 0xd
+ 835 060f A1050000 		.4byte	.LASF130
+ 836 0613 06       		.byte	0x6
+ 837 0614 1105     		.2byte	0x511
+ 838 0616 23050000 		.4byte	0x523
+ 839 061a 70       		.byte	0x70
+ 840 061b 0D       		.uleb128 0xd
+ 841 061c 91070000 		.4byte	.LASF131
+ 842 0620 06       		.byte	0x6
+ 843 0621 1205     		.2byte	0x512
+ 844 0623 B8000000 		.4byte	0xb8
+ 845 0627 74       		.byte	0x74
+ 846 0628 00       		.byte	0
+ 847 0629 0E       		.uleb128 0xe
+ 848 062a B8000000 		.4byte	0xb8
+ 849 062e 39060000 		.4byte	0x639
+ 850 0632 0F       		.uleb128 0xf
+ 851 0633 C3000000 		.4byte	0xc3
+ 852 0637 0F       		.byte	0xf
+ 853 0638 00       		.byte	0
+ 854 0639 0B       		.uleb128 0xb
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 17
+
+
+ 855 063a B0010000 		.4byte	.LASF132
+ 856 063e 06       		.byte	0x6
+ 857 063f 1305     		.2byte	0x513
+ 858 0641 5C050000 		.4byte	0x55c
+ 859 0645 10       		.uleb128 0x10
+ 860 0646 04       		.byte	0x4
+ 861 0647 4B060000 		.4byte	0x64b
+ 862 064b 11       		.uleb128 0x11
+ 863 064c 56060000 		.4byte	0x656
+ 864 0650 12       		.uleb128 0x12
+ 865 0651 B8000000 		.4byte	0xb8
+ 866 0655 00       		.byte	0
+ 867 0656 0B       		.uleb128 0xb
+ 868 0657 06040000 		.4byte	.LASF133
+ 869 065b 07       		.byte	0x7
+ 870 065c D901     		.2byte	0x1d9
+ 871 065e 45060000 		.4byte	0x645
+ 872 0662 13       		.uleb128 0x13
+ 873 0663 110A0000 		.4byte	.LASF164
+ 874 0667 38       		.byte	0x38
+ 875 0668 07       		.byte	0x7
+ 876 0669 7502     		.2byte	0x275
+ 877 066b 26070000 		.4byte	0x726
+ 878 066f 0D       		.uleb128 0xd
+ 879 0670 E1090000 		.4byte	.LASF134
+ 880 0674 07       		.byte	0x7
+ 881 0675 7802     		.2byte	0x278
+ 882 0677 CA000000 		.4byte	0xca
+ 883 067b 00       		.byte	0
+ 884 067c 0D       		.uleb128 0xd
+ 885 067d D7050000 		.4byte	.LASF135
+ 886 0681 07       		.byte	0x7
+ 887 0682 7902     		.2byte	0x279
+ 888 0684 CA000000 		.4byte	0xca
+ 889 0688 04       		.byte	0x4
+ 890 0689 0D       		.uleb128 0xd
+ 891 068a 5C010000 		.4byte	.LASF136
+ 892 068e 07       		.byte	0x7
+ 893 068f 7B02     		.2byte	0x27b
+ 894 0691 21050000 		.4byte	0x521
+ 895 0695 08       		.byte	0x8
+ 896 0696 0D       		.uleb128 0xd
+ 897 0697 AE080000 		.4byte	.LASF137
+ 898 069b 07       		.byte	0x7
+ 899 069c 7C02     		.2byte	0x27c
+ 900 069e B8000000 		.4byte	0xb8
+ 901 06a2 0C       		.byte	0xc
+ 902 06a3 0D       		.uleb128 0xd
+ 903 06a4 A0080000 		.4byte	.LASF138
+ 904 06a8 07       		.byte	0x7
+ 905 06a9 7D02     		.2byte	0x27d
+ 906 06ab CA000000 		.4byte	0xca
+ 907 06af 10       		.byte	0x10
+ 908 06b0 0D       		.uleb128 0xd
+ 909 06b1 C7090000 		.4byte	.LASF139
+ 910 06b5 07       		.byte	0x7
+ 911 06b6 7E02     		.2byte	0x27e
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 18
+
+
+ 912 06b8 CA000000 		.4byte	0xca
+ 913 06bc 14       		.byte	0x14
+ 914 06bd 0D       		.uleb128 0xd
+ 915 06be FC080000 		.4byte	.LASF140
+ 916 06c2 07       		.byte	0x7
+ 917 06c3 8002     		.2byte	0x280
+ 918 06c5 21050000 		.4byte	0x521
+ 919 06c9 18       		.byte	0x18
+ 920 06ca 0D       		.uleb128 0xd
+ 921 06cb 12000000 		.4byte	.LASF141
+ 922 06cf 07       		.byte	0x7
+ 923 06d0 8102     		.2byte	0x281
+ 924 06d2 B8000000 		.4byte	0xb8
+ 925 06d6 1C       		.byte	0x1c
+ 926 06d7 0D       		.uleb128 0xd
+ 927 06d8 72030000 		.4byte	.LASF142
+ 928 06dc 07       		.byte	0x7
+ 929 06dd 8202     		.2byte	0x282
+ 930 06df CA000000 		.4byte	0xca
+ 931 06e3 20       		.byte	0x20
+ 932 06e4 0D       		.uleb128 0xd
+ 933 06e5 7C010000 		.4byte	.LASF143
+ 934 06e9 07       		.byte	0x7
+ 935 06ea 8402     		.2byte	0x284
+ 936 06ec 21050000 		.4byte	0x521
+ 937 06f0 24       		.byte	0x24
+ 938 06f1 0D       		.uleb128 0xd
+ 939 06f2 AB030000 		.4byte	.LASF144
+ 940 06f6 07       		.byte	0x7
+ 941 06f7 8502     		.2byte	0x285
+ 942 06f9 B8000000 		.4byte	0xb8
+ 943 06fd 28       		.byte	0x28
+ 944 06fe 0D       		.uleb128 0xd
+ 945 06ff 75060000 		.4byte	.LASF145
+ 946 0703 07       		.byte	0x7
+ 947 0704 8602     		.2byte	0x286
+ 948 0706 CA000000 		.4byte	0xca
+ 949 070a 2C       		.byte	0x2c
+ 950 070b 0D       		.uleb128 0xd
+ 951 070c 9E040000 		.4byte	.LASF146
+ 952 0710 07       		.byte	0x7
+ 953 0711 8B02     		.2byte	0x28b
+ 954 0713 56060000 		.4byte	0x656
+ 955 0717 30       		.byte	0x30
+ 956 0718 0D       		.uleb128 0xd
+ 957 0719 F4080000 		.4byte	.LASF147
+ 958 071d 07       		.byte	0x7
+ 959 071e 8E02     		.2byte	0x28e
+ 960 0720 B8000000 		.4byte	0xb8
+ 961 0724 34       		.byte	0x34
+ 962 0725 00       		.byte	0
+ 963 0726 0B       		.uleb128 0xb
+ 964 0727 0B090000 		.4byte	.LASF148
+ 965 072b 07       		.byte	0x7
+ 966 072c 9102     		.2byte	0x291
+ 967 072e 62060000 		.4byte	0x662
+ 968 0732 06       		.uleb128 0x6
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 19
+
+
+ 969 0733 14       		.byte	0x14
+ 970 0734 08       		.byte	0x8
+ 971 0735 3B       		.byte	0x3b
+ 972 0736 77070000 		.4byte	0x777
+ 973 073a 07       		.uleb128 0x7
+ 974 073b D5090000 		.4byte	.LASF149
+ 975 073f 08       		.byte	0x8
+ 976 0740 3D       		.byte	0x3d
+ 977 0741 B8000000 		.4byte	0xb8
+ 978 0745 00       		.byte	0
+ 979 0746 07       		.uleb128 0x7
+ 980 0747 D4040000 		.4byte	.LASF150
+ 981 074b 08       		.byte	0x8
+ 982 074c 3E       		.byte	0x3e
+ 983 074d B8000000 		.4byte	0xb8
+ 984 0751 04       		.byte	0x4
+ 985 0752 07       		.uleb128 0x7
+ 986 0753 5C030000 		.4byte	.LASF151
+ 987 0757 08       		.byte	0x8
+ 988 0758 3F       		.byte	0x3f
+ 989 0759 77070000 		.4byte	0x777
+ 990 075d 08       		.byte	0x8
+ 991 075e 07       		.uleb128 0x7
+ 992 075f BC080000 		.4byte	.LASF152
+ 993 0763 08       		.byte	0x8
+ 994 0764 40       		.byte	0x40
+ 995 0765 B8000000 		.4byte	0xb8
+ 996 0769 0C       		.byte	0xc
+ 997 076a 07       		.uleb128 0x7
+ 998 076b 16020000 		.4byte	.LASF153
+ 999 076f 08       		.byte	0x8
+ 1000 0770 45       		.byte	0x45
+ 1001 0771 B8000000 		.4byte	0xb8
+ 1002 0775 10       		.byte	0x10
+ 1003 0776 00       		.byte	0
+ 1004 0777 10       		.uleb128 0x10
+ 1005 0778 04       		.byte	0x4
+ 1006 0779 7D070000 		.4byte	0x77d
+ 1007 077d 14       		.uleb128 0x14
+ 1008 077e 39060000 		.4byte	0x639
+ 1009 0782 03       		.uleb128 0x3
+ 1010 0783 EB020000 		.4byte	.LASF154
+ 1011 0787 08       		.byte	0x8
+ 1012 0788 48       		.byte	0x48
+ 1013 0789 32070000 		.4byte	0x732
+ 1014 078d 15       		.uleb128 0x15
+ 1015 078e 0C0A0000 		.4byte	.LASF165
+ 1016 0792 01       		.byte	0x1
+ 1017 0793 2E       		.byte	0x2e
+ 1018 0794 89000000 		.4byte	0x89
+ 1019 0798 00000000 		.4byte	.LFB452
+ 1020 079c 14000000 		.4byte	.LFE452-.LFB452
+ 1021 07a0 01       		.uleb128 0x1
+ 1022 07a1 9C       		.byte	0x9c
+ 1023 07a2 CD070000 		.4byte	0x7cd
+ 1024 07a6 16       		.uleb128 0x16
+ 1025 07a7 08000000 		.4byte	.LVL0
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 20
+
+
+ 1026 07ab 20080000 		.4byte	0x820
+ 1027 07af BD070000 		.4byte	0x7bd
+ 1028 07b3 17       		.uleb128 0x17
+ 1029 07b4 01       		.uleb128 0x1
+ 1030 07b5 50       		.byte	0x50
+ 1031 07b6 05       		.uleb128 0x5
+ 1032 07b7 0C       		.byte	0xc
+ 1033 07b8 00000810 		.4byte	0x10080000
+ 1034 07bc 00       		.byte	0
+ 1035 07bd 18       		.uleb128 0x18
+ 1036 07be 0E000000 		.4byte	.LVL1
+ 1037 07c2 2C080000 		.4byte	0x82c
+ 1038 07c6 17       		.uleb128 0x17
+ 1039 07c7 01       		.uleb128 0x1
+ 1040 07c8 50       		.byte	0x50
+ 1041 07c9 01       		.uleb128 0x1
+ 1042 07ca 30       		.byte	0x30
+ 1043 07cb 00       		.byte	0
+ 1044 07cc 00       		.byte	0
+ 1045 07cd 19       		.uleb128 0x19
+ 1046 07ce 2E060000 		.4byte	.LASF155
+ 1047 07d2 04       		.byte	0x4
+ 1048 07d3 A7       		.byte	0xa7
+ 1049 07d4 D8070000 		.4byte	0x7d8
+ 1050 07d8 10       		.uleb128 0x10
+ 1051 07d9 04       		.byte	0x4
+ 1052 07da DE070000 		.4byte	0x7de
+ 1053 07de 14       		.uleb128 0x14
+ 1054 07df E7040000 		.4byte	0x4e7
+ 1055 07e3 19       		.uleb128 0x19
+ 1056 07e4 25040000 		.4byte	.LASF156
+ 1057 07e8 09       		.byte	0x9
+ 1058 07e9 87       		.byte	0x87
+ 1059 07ea 26070000 		.4byte	0x726
+ 1060 07ee 1A       		.uleb128 0x1a
+ 1061 07ef 23010000 		.4byte	.LASF157
+ 1062 07f3 08       		.byte	0x8
+ 1063 07f4 6001     		.2byte	0x160
+ 1064 07f6 B8000000 		.4byte	0xb8
+ 1065 07fa 0E       		.uleb128 0xe
+ 1066 07fb 0A080000 		.4byte	0x80a
+ 1067 07ff 0A080000 		.4byte	0x80a
+ 1068 0803 0F       		.uleb128 0xf
+ 1069 0804 C3000000 		.4byte	0xc3
+ 1070 0808 00       		.byte	0
+ 1071 0809 00       		.byte	0
+ 1072 080a 14       		.uleb128 0x14
+ 1073 080b 82070000 		.4byte	0x782
+ 1074 080f 1A       		.uleb128 0x1a
+ 1075 0810 54080000 		.4byte	.LASF158
+ 1076 0814 08       		.byte	0x8
+ 1077 0815 6401     		.2byte	0x164
+ 1078 0817 1B080000 		.4byte	0x81b
+ 1079 081b 14       		.uleb128 0x14
+ 1080 081c FA070000 		.4byte	0x7fa
+ 1081 0820 1B       		.uleb128 0x1b
+ 1082 0821 B8040000 		.4byte	.LASF159
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 21
+
+
+ 1083 0825 B8040000 		.4byte	.LASF159
+ 1084 0829 0A       		.byte	0xa
+ 1085 082a 2502     		.2byte	0x225
+ 1086 082c 1B       		.uleb128 0x1b
+ 1087 082d 44060000 		.4byte	.LASF160
+ 1088 0831 44060000 		.4byte	.LASF160
+ 1089 0835 05       		.byte	0x5
+ 1090 0836 4806     		.2byte	0x648
+ 1091 0838 00       		.byte	0
+ 1092              		.section	.debug_abbrev,"",%progbits
+ 1093              	.Ldebug_abbrev0:
+ 1094 0000 01       		.uleb128 0x1
+ 1095 0001 11       		.uleb128 0x11
+ 1096 0002 01       		.byte	0x1
+ 1097 0003 25       		.uleb128 0x25
+ 1098 0004 0E       		.uleb128 0xe
+ 1099 0005 13       		.uleb128 0x13
+ 1100 0006 0B       		.uleb128 0xb
+ 1101 0007 03       		.uleb128 0x3
+ 1102 0008 0E       		.uleb128 0xe
+ 1103 0009 1B       		.uleb128 0x1b
+ 1104 000a 0E       		.uleb128 0xe
+ 1105 000b 55       		.uleb128 0x55
+ 1106 000c 17       		.uleb128 0x17
+ 1107 000d 11       		.uleb128 0x11
+ 1108 000e 01       		.uleb128 0x1
+ 1109 000f 10       		.uleb128 0x10
+ 1110 0010 17       		.uleb128 0x17
+ 1111 0011 00       		.byte	0
+ 1112 0012 00       		.byte	0
+ 1113 0013 02       		.uleb128 0x2
+ 1114 0014 24       		.uleb128 0x24
+ 1115 0015 00       		.byte	0
+ 1116 0016 0B       		.uleb128 0xb
+ 1117 0017 0B       		.uleb128 0xb
+ 1118 0018 3E       		.uleb128 0x3e
+ 1119 0019 0B       		.uleb128 0xb
+ 1120 001a 03       		.uleb128 0x3
+ 1121 001b 0E       		.uleb128 0xe
+ 1122 001c 00       		.byte	0
+ 1123 001d 00       		.byte	0
+ 1124 001e 03       		.uleb128 0x3
+ 1125 001f 16       		.uleb128 0x16
+ 1126 0020 00       		.byte	0
+ 1127 0021 03       		.uleb128 0x3
+ 1128 0022 0E       		.uleb128 0xe
+ 1129 0023 3A       		.uleb128 0x3a
+ 1130 0024 0B       		.uleb128 0xb
+ 1131 0025 3B       		.uleb128 0x3b
+ 1132 0026 0B       		.uleb128 0xb
+ 1133 0027 49       		.uleb128 0x49
+ 1134 0028 13       		.uleb128 0x13
+ 1135 0029 00       		.byte	0
+ 1136 002a 00       		.byte	0
+ 1137 002b 04       		.uleb128 0x4
+ 1138 002c 24       		.uleb128 0x24
+ 1139 002d 00       		.byte	0
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 22
+
+
+ 1140 002e 0B       		.uleb128 0xb
+ 1141 002f 0B       		.uleb128 0xb
+ 1142 0030 3E       		.uleb128 0x3e
+ 1143 0031 0B       		.uleb128 0xb
+ 1144 0032 03       		.uleb128 0x3
+ 1145 0033 08       		.uleb128 0x8
+ 1146 0034 00       		.byte	0
+ 1147 0035 00       		.byte	0
+ 1148 0036 05       		.uleb128 0x5
+ 1149 0037 35       		.uleb128 0x35
+ 1150 0038 00       		.byte	0
+ 1151 0039 49       		.uleb128 0x49
+ 1152 003a 13       		.uleb128 0x13
+ 1153 003b 00       		.byte	0
+ 1154 003c 00       		.byte	0
+ 1155 003d 06       		.uleb128 0x6
+ 1156 003e 13       		.uleb128 0x13
+ 1157 003f 01       		.byte	0x1
+ 1158 0040 0B       		.uleb128 0xb
+ 1159 0041 0B       		.uleb128 0xb
+ 1160 0042 3A       		.uleb128 0x3a
+ 1161 0043 0B       		.uleb128 0xb
+ 1162 0044 3B       		.uleb128 0x3b
+ 1163 0045 0B       		.uleb128 0xb
+ 1164 0046 01       		.uleb128 0x1
+ 1165 0047 13       		.uleb128 0x13
+ 1166 0048 00       		.byte	0
+ 1167 0049 00       		.byte	0
+ 1168 004a 07       		.uleb128 0x7
+ 1169 004b 0D       		.uleb128 0xd
+ 1170 004c 00       		.byte	0
+ 1171 004d 03       		.uleb128 0x3
+ 1172 004e 0E       		.uleb128 0xe
+ 1173 004f 3A       		.uleb128 0x3a
+ 1174 0050 0B       		.uleb128 0xb
+ 1175 0051 3B       		.uleb128 0x3b
+ 1176 0052 0B       		.uleb128 0xb
+ 1177 0053 49       		.uleb128 0x49
+ 1178 0054 13       		.uleb128 0x13
+ 1179 0055 38       		.uleb128 0x38
+ 1180 0056 0B       		.uleb128 0xb
+ 1181 0057 00       		.byte	0
+ 1182 0058 00       		.byte	0
+ 1183 0059 08       		.uleb128 0x8
+ 1184 005a 04       		.uleb128 0x4
+ 1185 005b 01       		.byte	0x1
+ 1186 005c 0B       		.uleb128 0xb
+ 1187 005d 0B       		.uleb128 0xb
+ 1188 005e 49       		.uleb128 0x49
+ 1189 005f 13       		.uleb128 0x13
+ 1190 0060 3A       		.uleb128 0x3a
+ 1191 0061 0B       		.uleb128 0xb
+ 1192 0062 3B       		.uleb128 0x3b
+ 1193 0063 05       		.uleb128 0x5
+ 1194 0064 01       		.uleb128 0x1
+ 1195 0065 13       		.uleb128 0x13
+ 1196 0066 00       		.byte	0
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 23
+
+
+ 1197 0067 00       		.byte	0
+ 1198 0068 09       		.uleb128 0x9
+ 1199 0069 28       		.uleb128 0x28
+ 1200 006a 00       		.byte	0
+ 1201 006b 03       		.uleb128 0x3
+ 1202 006c 0E       		.uleb128 0xe
+ 1203 006d 1C       		.uleb128 0x1c
+ 1204 006e 0B       		.uleb128 0xb
+ 1205 006f 00       		.byte	0
+ 1206 0070 00       		.byte	0
+ 1207 0071 0A       		.uleb128 0xa
+ 1208 0072 0F       		.uleb128 0xf
+ 1209 0073 00       		.byte	0
+ 1210 0074 0B       		.uleb128 0xb
+ 1211 0075 0B       		.uleb128 0xb
+ 1212 0076 00       		.byte	0
+ 1213 0077 00       		.byte	0
+ 1214 0078 0B       		.uleb128 0xb
+ 1215 0079 16       		.uleb128 0x16
+ 1216 007a 00       		.byte	0
+ 1217 007b 03       		.uleb128 0x3
+ 1218 007c 0E       		.uleb128 0xe
+ 1219 007d 3A       		.uleb128 0x3a
+ 1220 007e 0B       		.uleb128 0xb
+ 1221 007f 3B       		.uleb128 0x3b
+ 1222 0080 05       		.uleb128 0x5
+ 1223 0081 49       		.uleb128 0x49
+ 1224 0082 13       		.uleb128 0x13
+ 1225 0083 00       		.byte	0
+ 1226 0084 00       		.byte	0
+ 1227 0085 0C       		.uleb128 0xc
+ 1228 0086 13       		.uleb128 0x13
+ 1229 0087 01       		.byte	0x1
+ 1230 0088 0B       		.uleb128 0xb
+ 1231 0089 0B       		.uleb128 0xb
+ 1232 008a 3A       		.uleb128 0x3a
+ 1233 008b 0B       		.uleb128 0xb
+ 1234 008c 3B       		.uleb128 0x3b
+ 1235 008d 05       		.uleb128 0x5
+ 1236 008e 01       		.uleb128 0x1
+ 1237 008f 13       		.uleb128 0x13
+ 1238 0090 00       		.byte	0
+ 1239 0091 00       		.byte	0
+ 1240 0092 0D       		.uleb128 0xd
+ 1241 0093 0D       		.uleb128 0xd
+ 1242 0094 00       		.byte	0
+ 1243 0095 03       		.uleb128 0x3
+ 1244 0096 0E       		.uleb128 0xe
+ 1245 0097 3A       		.uleb128 0x3a
+ 1246 0098 0B       		.uleb128 0xb
+ 1247 0099 3B       		.uleb128 0x3b
+ 1248 009a 05       		.uleb128 0x5
+ 1249 009b 49       		.uleb128 0x49
+ 1250 009c 13       		.uleb128 0x13
+ 1251 009d 38       		.uleb128 0x38
+ 1252 009e 0B       		.uleb128 0xb
+ 1253 009f 00       		.byte	0
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 24
+
+
+ 1254 00a0 00       		.byte	0
+ 1255 00a1 0E       		.uleb128 0xe
+ 1256 00a2 01       		.uleb128 0x1
+ 1257 00a3 01       		.byte	0x1
+ 1258 00a4 49       		.uleb128 0x49
+ 1259 00a5 13       		.uleb128 0x13
+ 1260 00a6 01       		.uleb128 0x1
+ 1261 00a7 13       		.uleb128 0x13
+ 1262 00a8 00       		.byte	0
+ 1263 00a9 00       		.byte	0
+ 1264 00aa 0F       		.uleb128 0xf
+ 1265 00ab 21       		.uleb128 0x21
+ 1266 00ac 00       		.byte	0
+ 1267 00ad 49       		.uleb128 0x49
+ 1268 00ae 13       		.uleb128 0x13
+ 1269 00af 2F       		.uleb128 0x2f
+ 1270 00b0 0B       		.uleb128 0xb
+ 1271 00b1 00       		.byte	0
+ 1272 00b2 00       		.byte	0
+ 1273 00b3 10       		.uleb128 0x10
+ 1274 00b4 0F       		.uleb128 0xf
+ 1275 00b5 00       		.byte	0
+ 1276 00b6 0B       		.uleb128 0xb
+ 1277 00b7 0B       		.uleb128 0xb
+ 1278 00b8 49       		.uleb128 0x49
+ 1279 00b9 13       		.uleb128 0x13
+ 1280 00ba 00       		.byte	0
+ 1281 00bb 00       		.byte	0
+ 1282 00bc 11       		.uleb128 0x11
+ 1283 00bd 15       		.uleb128 0x15
+ 1284 00be 01       		.byte	0x1
+ 1285 00bf 27       		.uleb128 0x27
+ 1286 00c0 19       		.uleb128 0x19
+ 1287 00c1 01       		.uleb128 0x1
+ 1288 00c2 13       		.uleb128 0x13
+ 1289 00c3 00       		.byte	0
+ 1290 00c4 00       		.byte	0
+ 1291 00c5 12       		.uleb128 0x12
+ 1292 00c6 05       		.uleb128 0x5
+ 1293 00c7 00       		.byte	0
+ 1294 00c8 49       		.uleb128 0x49
+ 1295 00c9 13       		.uleb128 0x13
+ 1296 00ca 00       		.byte	0
+ 1297 00cb 00       		.byte	0
+ 1298 00cc 13       		.uleb128 0x13
+ 1299 00cd 13       		.uleb128 0x13
+ 1300 00ce 01       		.byte	0x1
+ 1301 00cf 03       		.uleb128 0x3
+ 1302 00d0 0E       		.uleb128 0xe
+ 1303 00d1 0B       		.uleb128 0xb
+ 1304 00d2 0B       		.uleb128 0xb
+ 1305 00d3 3A       		.uleb128 0x3a
+ 1306 00d4 0B       		.uleb128 0xb
+ 1307 00d5 3B       		.uleb128 0x3b
+ 1308 00d6 05       		.uleb128 0x5
+ 1309 00d7 01       		.uleb128 0x1
+ 1310 00d8 13       		.uleb128 0x13
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 25
+
+
+ 1311 00d9 00       		.byte	0
+ 1312 00da 00       		.byte	0
+ 1313 00db 14       		.uleb128 0x14
+ 1314 00dc 26       		.uleb128 0x26
+ 1315 00dd 00       		.byte	0
+ 1316 00de 49       		.uleb128 0x49
+ 1317 00df 13       		.uleb128 0x13
+ 1318 00e0 00       		.byte	0
+ 1319 00e1 00       		.byte	0
+ 1320 00e2 15       		.uleb128 0x15
+ 1321 00e3 2E       		.uleb128 0x2e
+ 1322 00e4 01       		.byte	0x1
+ 1323 00e5 3F       		.uleb128 0x3f
+ 1324 00e6 19       		.uleb128 0x19
+ 1325 00e7 03       		.uleb128 0x3
+ 1326 00e8 0E       		.uleb128 0xe
+ 1327 00e9 3A       		.uleb128 0x3a
+ 1328 00ea 0B       		.uleb128 0xb
+ 1329 00eb 3B       		.uleb128 0x3b
+ 1330 00ec 0B       		.uleb128 0xb
+ 1331 00ed 27       		.uleb128 0x27
+ 1332 00ee 19       		.uleb128 0x19
+ 1333 00ef 49       		.uleb128 0x49
+ 1334 00f0 13       		.uleb128 0x13
+ 1335 00f1 8701     		.uleb128 0x87
+ 1336 00f3 19       		.uleb128 0x19
+ 1337 00f4 11       		.uleb128 0x11
+ 1338 00f5 01       		.uleb128 0x1
+ 1339 00f6 12       		.uleb128 0x12
+ 1340 00f7 06       		.uleb128 0x6
+ 1341 00f8 40       		.uleb128 0x40
+ 1342 00f9 18       		.uleb128 0x18
+ 1343 00fa 9742     		.uleb128 0x2117
+ 1344 00fc 19       		.uleb128 0x19
+ 1345 00fd 01       		.uleb128 0x1
+ 1346 00fe 13       		.uleb128 0x13
+ 1347 00ff 00       		.byte	0
+ 1348 0100 00       		.byte	0
+ 1349 0101 16       		.uleb128 0x16
+ 1350 0102 898201   		.uleb128 0x4109
+ 1351 0105 01       		.byte	0x1
+ 1352 0106 11       		.uleb128 0x11
+ 1353 0107 01       		.uleb128 0x1
+ 1354 0108 31       		.uleb128 0x31
+ 1355 0109 13       		.uleb128 0x13
+ 1356 010a 01       		.uleb128 0x1
+ 1357 010b 13       		.uleb128 0x13
+ 1358 010c 00       		.byte	0
+ 1359 010d 00       		.byte	0
+ 1360 010e 17       		.uleb128 0x17
+ 1361 010f 8A8201   		.uleb128 0x410a
+ 1362 0112 00       		.byte	0
+ 1363 0113 02       		.uleb128 0x2
+ 1364 0114 18       		.uleb128 0x18
+ 1365 0115 9142     		.uleb128 0x2111
+ 1366 0117 18       		.uleb128 0x18
+ 1367 0118 00       		.byte	0
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 26
+
+
+ 1368 0119 00       		.byte	0
+ 1369 011a 18       		.uleb128 0x18
+ 1370 011b 898201   		.uleb128 0x4109
+ 1371 011e 01       		.byte	0x1
+ 1372 011f 11       		.uleb128 0x11
+ 1373 0120 01       		.uleb128 0x1
+ 1374 0121 31       		.uleb128 0x31
+ 1375 0122 13       		.uleb128 0x13
+ 1376 0123 00       		.byte	0
+ 1377 0124 00       		.byte	0
+ 1378 0125 19       		.uleb128 0x19
+ 1379 0126 34       		.uleb128 0x34
+ 1380 0127 00       		.byte	0
+ 1381 0128 03       		.uleb128 0x3
+ 1382 0129 0E       		.uleb128 0xe
+ 1383 012a 3A       		.uleb128 0x3a
+ 1384 012b 0B       		.uleb128 0xb
+ 1385 012c 3B       		.uleb128 0x3b
+ 1386 012d 0B       		.uleb128 0xb
+ 1387 012e 49       		.uleb128 0x49
+ 1388 012f 13       		.uleb128 0x13
+ 1389 0130 3F       		.uleb128 0x3f
+ 1390 0131 19       		.uleb128 0x19
+ 1391 0132 3C       		.uleb128 0x3c
+ 1392 0133 19       		.uleb128 0x19
+ 1393 0134 00       		.byte	0
+ 1394 0135 00       		.byte	0
+ 1395 0136 1A       		.uleb128 0x1a
+ 1396 0137 34       		.uleb128 0x34
+ 1397 0138 00       		.byte	0
+ 1398 0139 03       		.uleb128 0x3
+ 1399 013a 0E       		.uleb128 0xe
+ 1400 013b 3A       		.uleb128 0x3a
+ 1401 013c 0B       		.uleb128 0xb
+ 1402 013d 3B       		.uleb128 0x3b
+ 1403 013e 05       		.uleb128 0x5
+ 1404 013f 49       		.uleb128 0x49
+ 1405 0140 13       		.uleb128 0x13
+ 1406 0141 3F       		.uleb128 0x3f
+ 1407 0142 19       		.uleb128 0x19
+ 1408 0143 3C       		.uleb128 0x3c
+ 1409 0144 19       		.uleb128 0x19
+ 1410 0145 00       		.byte	0
+ 1411 0146 00       		.byte	0
+ 1412 0147 1B       		.uleb128 0x1b
+ 1413 0148 2E       		.uleb128 0x2e
+ 1414 0149 00       		.byte	0
+ 1415 014a 3F       		.uleb128 0x3f
+ 1416 014b 19       		.uleb128 0x19
+ 1417 014c 3C       		.uleb128 0x3c
+ 1418 014d 19       		.uleb128 0x19
+ 1419 014e 6E       		.uleb128 0x6e
+ 1420 014f 0E       		.uleb128 0xe
+ 1421 0150 03       		.uleb128 0x3
+ 1422 0151 0E       		.uleb128 0xe
+ 1423 0152 3A       		.uleb128 0x3a
+ 1424 0153 0B       		.uleb128 0xb
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 27
+
+
+ 1425 0154 3B       		.uleb128 0x3b
+ 1426 0155 05       		.uleb128 0x5
+ 1427 0156 00       		.byte	0
+ 1428 0157 00       		.byte	0
+ 1429 0158 00       		.byte	0
+ 1430              		.section	.debug_aranges,"",%progbits
+ 1431 0000 1C000000 		.4byte	0x1c
+ 1432 0004 0200     		.2byte	0x2
+ 1433 0006 00000000 		.4byte	.Ldebug_info0
+ 1434 000a 04       		.byte	0x4
+ 1435 000b 00       		.byte	0
+ 1436 000c 0000     		.2byte	0
+ 1437 000e 0000     		.2byte	0
+ 1438 0010 00000000 		.4byte	.LFB452
+ 1439 0014 14000000 		.4byte	.LFE452-.LFB452
+ 1440 0018 00000000 		.4byte	0
+ 1441 001c 00000000 		.4byte	0
+ 1442              		.section	.debug_ranges,"",%progbits
+ 1443              	.Ldebug_ranges0:
+ 1444 0000 00000000 		.4byte	.LFB452
+ 1445 0004 14000000 		.4byte	.LFE452
+ 1446 0008 00000000 		.4byte	0
+ 1447 000c 00000000 		.4byte	0
+ 1448              		.section	.debug_line,"",%progbits
+ 1449              	.Ldebug_line0:
+ 1450 0000 7F020000 		.section	.debug_str,"MS",%progbits,1
+ 1450      02006402 
+ 1450      00000201 
+ 1450      FB0E0D00 
+ 1450      01010101 
+ 1451              	.LASF54:
+ 1452 0000 70726F74 		.ascii	"protBusMasterMask\000"
+ 1452      4275734D 
+ 1452      61737465 
+ 1452      724D6173 
+ 1452      6B00
+ 1453              	.LASF141:
+ 1454 0012 72784275 		.ascii	"rxBufSize\000"
+ 1454      6653697A 
+ 1454      6500
+ 1455              	.LASF64:
+ 1456 001c 666C6173 		.ascii	"flashCtlMainWs3Freq\000"
+ 1456      6843746C 
+ 1456      4D61696E 
+ 1456      57733346 
+ 1456      72657100 
+ 1457              	.LASF86:
+ 1458 0030 6770696F 		.ascii	"gpioPrtCfgInOffset\000"
+ 1458      50727443 
+ 1458      6667496E 
+ 1458      4F666673 
+ 1458      657400
+ 1459              	.LASF126:
+ 1460 0043 73617449 		.ascii	"satIntrMask\000"
+ 1460      6E74724D 
+ 1460      61736B00 
+ 1461              	.LASF30:
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 28
+
+
+ 1462 004f 63727970 		.ascii	"cryptoVersion\000"
+ 1462      746F5665 
+ 1462      7273696F 
+ 1462      6E00
+ 1463              	.LASF48:
+ 1464 005d 70657269 		.ascii	"periClockNr\000"
+ 1464      436C6F63 
+ 1464      6B4E7200 
+ 1465              	.LASF163:
+ 1466 0069 433A5C55 		.ascii	"C:\\Users\\petro\\Documents\\PSoC Creator\\Tests\\M"
+ 1466      73657273 
+ 1466      5C706574 
+ 1466      726F5C44 
+ 1466      6F63756D 
+ 1467 0096 61696E50 		.ascii	"ainProject.cydsn\000"
+ 1467      726F6A65 
+ 1467      63742E63 
+ 1467      7964736E 
+ 1467      00
+ 1468              	.LASF26:
+ 1469 00a7 70617373 		.ascii	"passBase\000"
+ 1469      42617365 
+ 1469      00
+ 1470              	.LASF162:
+ 1471 00b0 6D61696E 		.ascii	"main_cm0p.c\000"
+ 1471      5F636D30 
+ 1471      702E6300 
+ 1472              	.LASF102:
+ 1473 00bc 63707573 		.ascii	"cpussRam2Ctl0\000"
+ 1473      7352616D 
+ 1473      3243746C 
+ 1473      3000
+ 1474              	.LASF39:
+ 1475 00ca 63707573 		.ascii	"cpussIpcIrqNr\000"
+ 1475      73497063 
+ 1475      4972714E 
+ 1475      7200
+ 1476              	.LASF3:
+ 1477 00d8 5F5F7569 		.ascii	"__uint8_t\000"
+ 1477      6E74385F 
+ 1477      7400
+ 1478              	.LASF41:
+ 1479 00e2 63707573 		.ascii	"cpussFlashPaSize\000"
+ 1479      73466C61 
+ 1479      73685061 
+ 1479      53697A65 
+ 1479      00
+ 1480              	.LASF90:
+ 1481 00f3 63707573 		.ascii	"cpussCm4ClockCtlOffset\000"
+ 1481      73436D34 
+ 1481      436C6F63 
+ 1481      6B43746C 
+ 1481      4F666673 
+ 1482              	.LASF19:
+ 1483 010a 63707573 		.ascii	"cpussBase\000"
+ 1483      73426173 
+ 1483      6500
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 29
+
+
+ 1484              	.LASF68:
+ 1485 0114 64774368 		.ascii	"dwChCtlPrioPos\000"
+ 1485      43746C50 
+ 1485      72696F50 
+ 1485      6F7300
+ 1486              	.LASF157:
+ 1487 0123 4144435F 		.ascii	"ADC_currentConfig\000"
+ 1487      63757272 
+ 1487      656E7443 
+ 1487      6F6E6669 
+ 1487      6700
+ 1488              	.LASF11:
+ 1489 0135 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1489      206C6F6E 
+ 1489      6720756E 
+ 1489      7369676E 
+ 1489      65642069 
+ 1490              	.LASF72:
+ 1491 014c 70657269 		.ascii	"periTrCmdOffset\000"
+ 1491      5472436D 
+ 1491      644F6666 
+ 1491      73657400 
+ 1492              	.LASF136:
+ 1493 015c 72785269 		.ascii	"rxRingBuf\000"
+ 1493      6E674275 
+ 1493      6600
+ 1494              	.LASF96:
+ 1495 0166 63707573 		.ascii	"cpussSysTickCtlOffset\000"
+ 1495      73537973 
+ 1495      5469636B 
+ 1495      43746C4F 
+ 1495      66667365 
+ 1496              	.LASF143:
+ 1497 017c 74784275 		.ascii	"txBuf\000"
+ 1497      6600
+ 1498              	.LASF57:
+ 1499 0182 666C6173 		.ascii	"flashPipeRequired\000"
+ 1499      68506970 
+ 1499      65526571 
+ 1499      75697265 
+ 1499      6400
+ 1500              	.LASF61:
+ 1501 0194 666C6173 		.ascii	"flashCtlMainWs0Freq\000"
+ 1501      6843746C 
+ 1501      4D61696E 
+ 1501      57733046 
+ 1501      72657100 
+ 1502              	.LASF14:
+ 1503 01a8 696E7431 		.ascii	"int16_t\000"
+ 1503      365F7400 
+ 1504              	.LASF132:
+ 1505 01b0 63795F73 		.ascii	"cy_stc_sar_config_t\000"
+ 1505      74635F73 
+ 1505      61725F63 
+ 1505      6F6E6669 
+ 1505      675F7400 
+ 1506              	.LASF10:
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 30
+
+
+ 1507 01c4 6C6F6E67 		.ascii	"long long int\000"
+ 1507      206C6F6E 
+ 1507      6720696E 
+ 1507      7400
+ 1508              	.LASF2:
+ 1509 01d2 7369676E 		.ascii	"signed char\000"
+ 1509      65642063 
+ 1509      68617200 
+ 1510              	.LASF77:
+ 1511 01de 70657269 		.ascii	"periDivCmdTypeSelPos\000"
+ 1511      44697643 
+ 1511      6D645479 
+ 1511      70655365 
+ 1511      6C506F73 
+ 1512              	.LASF116:
+ 1513 01f3 63795F65 		.ascii	"cy_en_sar_range_detect_condition_t\000"
+ 1513      6E5F7361 
+ 1513      725F7261 
+ 1513      6E67655F 
+ 1513      64657465 
+ 1514              	.LASF153:
+ 1515 0216 636C6B44 		.ascii	"clkDivider\000"
+ 1515      69766964 
+ 1515      657200
+ 1516              	.LASF35:
+ 1517 0221 69706356 		.ascii	"ipcVersion\000"
+ 1517      65727369 
+ 1517      6F6E00
+ 1518              	.LASF97:
+ 1519 022c 63707573 		.ascii	"cpussCm0NmiCtlOffset\000"
+ 1519      73436D30 
+ 1519      4E6D6943 
+ 1519      746C4F66 
+ 1519      66736574 
+ 1520              	.LASF45:
+ 1521 0241 73727373 		.ascii	"srssNumClkpath\000"
+ 1521      4E756D43 
+ 1521      6C6B7061 
+ 1521      746800
+ 1522              	.LASF24:
+ 1523 0250 6873696F 		.ascii	"hsiomBase\000"
+ 1523      6D426173 
+ 1523      6500
+ 1524              	.LASF112:
+ 1525 025a 43595F53 		.ascii	"CY_SAR_RANGE_COND_BELOW\000"
+ 1525      41525F52 
+ 1525      414E4745 
+ 1525      5F434F4E 
+ 1525      445F4245 
+ 1526              	.LASF7:
+ 1527 0272 6C6F6E67 		.ascii	"long int\000"
+ 1527      20696E74 
+ 1527      00
+ 1528              	.LASF55:
+ 1529 027b 63727970 		.ascii	"cryptoMemSize\000"
+ 1529      746F4D65 
+ 1529      6D53697A 
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 31
+
+
+ 1529      6500
+ 1530              	.LASF21:
+ 1531 0289 70657269 		.ascii	"periBase\000"
+ 1531      42617365 
+ 1531      00
+ 1532              	.LASF53:
+ 1533 0292 73797350 		.ascii	"sysPmSimoPresent\000"
+ 1533      6D53696D 
+ 1533      6F507265 
+ 1533      73656E74 
+ 1533      00
+ 1534              	.LASF114:
+ 1535 02a3 43595F53 		.ascii	"CY_SAR_RANGE_COND_ABOVE\000"
+ 1535      41525F52 
+ 1535      414E4745 
+ 1535      5F434F4E 
+ 1535      445F4142 
+ 1536              	.LASF15:
+ 1537 02bb 75696E74 		.ascii	"uint16_t\000"
+ 1537      31365F74 
+ 1537      00
+ 1538              	.LASF108:
+ 1539 02c4 646F7562 		.ascii	"double\000"
+ 1539      6C6500
+ 1540              	.LASF82:
+ 1541 02cb 70657269 		.ascii	"periDiv16_5CtlOffset\000"
+ 1541      44697631 
+ 1541      365F3543 
+ 1541      746C4F66 
+ 1541      66736574 
+ 1542              	.LASF46:
+ 1543 02e0 73727373 		.ascii	"srssNumPll\000"
+ 1543      4E756D50 
+ 1543      6C6C00
+ 1544              	.LASF154:
+ 1545 02eb 4144435F 		.ascii	"ADC_CONFIG_STRUCT\000"
+ 1545      434F4E46 
+ 1545      49475F53 
+ 1545      54525543 
+ 1545      5400
+ 1546              	.LASF80:
+ 1547 02fd 70657269 		.ascii	"periDiv8CtlOffset\000"
+ 1547      44697638 
+ 1547      43746C4F 
+ 1547      66667365 
+ 1547      7400
+ 1548              	.LASF6:
+ 1549 030f 73686F72 		.ascii	"short unsigned int\000"
+ 1549      7420756E 
+ 1549      7369676E 
+ 1549      65642069 
+ 1549      6E7400
+ 1550              	.LASF87:
+ 1551 0322 6770696F 		.ascii	"gpioPrtCfgOutOffset\000"
+ 1551      50727443 
+ 1551      66674F75 
+ 1551      744F6666 
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 32
+
+
+ 1551      73657400 
+ 1552              	.LASF20:
+ 1553 0336 666C6173 		.ascii	"flashcBase\000"
+ 1553      68634261 
+ 1553      736500
+ 1554              	.LASF8:
+ 1555 0341 5F5F7569 		.ascii	"__uint32_t\000"
+ 1555      6E743332 
+ 1555      5F7400
+ 1556              	.LASF50:
+ 1557 034c 70617373 		.ascii	"passSarChannels\000"
+ 1557      53617243 
+ 1557      68616E6E 
+ 1557      656C7300 
+ 1558              	.LASF151:
+ 1559 035c 6877436F 		.ascii	"hwConfigStc\000"
+ 1559      6E666967 
+ 1559      53746300 
+ 1560              	.LASF4:
+ 1561 0368 5F5F696E 		.ascii	"__int16_t\000"
+ 1561      7431365F 
+ 1561      7400
+ 1562              	.LASF142:
+ 1563 0372 72784275 		.ascii	"rxBufIdx\000"
+ 1563      66496478 
+ 1563      00
+ 1564              	.LASF117:
+ 1565 037b 6374726C 		.ascii	"ctrl\000"
+ 1565      00
+ 1566              	.LASF78:
+ 1567 0380 70657269 		.ascii	"periDivCmdPaDivSelPos\000"
+ 1567      44697643 
+ 1567      6D645061 
+ 1567      44697653 
+ 1567      656C506F 
+ 1568              	.LASF93:
+ 1569 0396 63707573 		.ascii	"cpussCm4PwrCtlOffset\000"
+ 1569      73436D34 
+ 1569      50777243 
+ 1569      746C4F66 
+ 1569      66736574 
+ 1570              	.LASF144:
+ 1571 03ab 74784275 		.ascii	"txBufSize\000"
+ 1571      6653697A 
+ 1571      6500
+ 1572              	.LASF88:
+ 1573 03b5 6770696F 		.ascii	"gpioPrtCfgSioOffset\000"
+ 1573      50727443 
+ 1573      66675369 
+ 1573      6F4F6666 
+ 1573      73657400 
+ 1574              	.LASF40:
+ 1575 03c9 63707573 		.ascii	"cpussDwChNr\000"
+ 1575      73447743 
+ 1575      684E7200 
+ 1576              	.LASF12:
+ 1577 03d5 756E7369 		.ascii	"unsigned int\000"
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 33
+
+
+ 1577      676E6564 
+ 1577      20696E74 
+ 1577      00
+ 1578              	.LASF73:
+ 1579 03e2 70657269 		.ascii	"periTrCmdGrSelMsk\000"
+ 1579      5472436D 
+ 1579      64477253 
+ 1579      656C4D73 
+ 1579      6B00
+ 1580              	.LASF9:
+ 1581 03f4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1581      20756E73 
+ 1581      69676E65 
+ 1581      6420696E 
+ 1581      7400
+ 1582              	.LASF133:
+ 1583 0406 63795F63 		.ascii	"cy_cb_scb_uart_handle_events_t\000"
+ 1583      625F7363 
+ 1583      625F7561 
+ 1583      72745F68 
+ 1583      616E646C 
+ 1584              	.LASF156:
+ 1585 0425 55415254 		.ascii	"UART_context\000"
+ 1585      5F636F6E 
+ 1585      74657874 
+ 1585      00
+ 1586              	.LASF38:
+ 1587 0432 63707573 		.ascii	"cpussIpcNr\000"
+ 1587      73497063 
+ 1587      4E7200
+ 1588              	.LASF110:
+ 1589 043d 43595F53 		.ascii	"CY_SYSPM_WAIT_FOR_EVENT\000"
+ 1589      5953504D 
+ 1589      5F574149 
+ 1589      545F464F 
+ 1589      525F4556 
+ 1590              	.LASF63:
+ 1591 0455 666C6173 		.ascii	"flashCtlMainWs2Freq\000"
+ 1591      6843746C 
+ 1591      4D61696E 
+ 1591      57733246 
+ 1591      72657100 
+ 1592              	.LASF119:
+ 1593 0469 73616D70 		.ascii	"sampleTime01\000"
+ 1593      6C655469 
+ 1593      6D653031 
+ 1593      00
+ 1594              	.LASF74:
+ 1595 0476 70657269 		.ascii	"periTrGrOffset\000"
+ 1595      54724772 
+ 1595      4F666673 
+ 1595      657400
+ 1596              	.LASF101:
+ 1597 0485 63707573 		.ascii	"cpussRam1Ctl0\000"
+ 1597      7352616D 
+ 1597      3143746C 
+ 1597      3000
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 34
+
+
+ 1598              	.LASF121:
+ 1599 0493 72616E67 		.ascii	"rangeThres\000"
+ 1599      65546872 
+ 1599      657300
+ 1600              	.LASF146:
+ 1601 049e 63624576 		.ascii	"cbEvents\000"
+ 1601      656E7473 
+ 1601      00
+ 1602              	.LASF85:
+ 1603 04a7 6770696F 		.ascii	"gpioPrtCfgOffset\000"
+ 1603      50727443 
+ 1603      66674F66 
+ 1603      66736574 
+ 1603      00
+ 1604              	.LASF159:
+ 1605 04b8 43795F53 		.ascii	"Cy_SysEnableCM4\000"
+ 1605      7973456E 
+ 1605      61626C65 
+ 1605      434D3400 
+ 1606              	.LASF33:
+ 1607 04c8 6770696F 		.ascii	"gpioVersion\000"
+ 1607      56657273 
+ 1607      696F6E00 
+ 1608              	.LASF150:
+ 1609 04d4 6E756D43 		.ascii	"numChannels\000"
+ 1609      68616E6E 
+ 1609      656C7300 
+ 1610              	.LASF105:
+ 1611 04e0 63795F73 		.ascii	"cy_stc_device_t\000"
+ 1611      74635F64 
+ 1611      65766963 
+ 1611      655F7400 
+ 1612              	.LASF124:
+ 1613 04f0 6368616E 		.ascii	"chanConfig\000"
+ 1613      436F6E66 
+ 1613      696700
+ 1614              	.LASF23:
+ 1615 04fb 70726F74 		.ascii	"protBase\000"
+ 1615      42617365 
+ 1615      00
+ 1616              	.LASF94:
+ 1617 0504 63707573 		.ascii	"cpussTrimRamCtlOffset\000"
+ 1617      73547269 
+ 1617      6D52616D 
+ 1617      43746C4F 
+ 1617      66667365 
+ 1618              	.LASF89:
+ 1619 051a 63707573 		.ascii	"cpussCm0ClockCtlOffset\000"
+ 1619      73436D30 
+ 1619      436C6F63 
+ 1619      6B43746C 
+ 1619      4F666673 
+ 1620              	.LASF28:
+ 1621 0531 63727970 		.ascii	"cryptoBase\000"
+ 1621      746F4261 
+ 1621      736500
+ 1622              	.LASF36:
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 35
+
+
+ 1623 053c 70657269 		.ascii	"periVersion\000"
+ 1623      56657273 
+ 1623      696F6E00 
+ 1624              	.LASF92:
+ 1625 0548 63707573 		.ascii	"cpussCm0StatusOffset\000"
+ 1625      73436D30 
+ 1625      53746174 
+ 1625      75734F66 
+ 1625      66736574 
+ 1626              	.LASF17:
+ 1627 055d 73697A65 		.ascii	"sizetype\000"
+ 1627      74797065 
+ 1627      00
+ 1628              	.LASF66:
+ 1629 0566 64774368 		.ascii	"dwChOffset\000"
+ 1629      4F666673 
+ 1629      657400
+ 1630              	.LASF120:
+ 1631 0571 73616D70 		.ascii	"sampleTime23\000"
+ 1631      6C655469 
+ 1631      6D653233 
+ 1631      00
+ 1632              	.LASF79:
+ 1633 057e 70657269 		.ascii	"periDivCmdPaTypeSelPos\000"
+ 1633      44697643 
+ 1633      6D645061 
+ 1633      54797065 
+ 1633      53656C50 
+ 1634              	.LASF51:
+ 1635 0595 65704D6F 		.ascii	"epMonitorNr\000"
+ 1635      6E69746F 
+ 1635      724E7200 
+ 1636              	.LASF130:
+ 1637 05a1 636F6E66 		.ascii	"configRouting\000"
+ 1637      6967526F 
+ 1637      7574696E 
+ 1637      6700
+ 1638              	.LASF37:
+ 1639 05af 70726F74 		.ascii	"protVersion\000"
+ 1639      56657273 
+ 1639      696F6E00 
+ 1640              	.LASF70:
+ 1641 05bb 64775374 		.ascii	"dwStatusChIdxPos\000"
+ 1641      61747573 
+ 1641      43684964 
+ 1641      78506F73 
+ 1641      00
+ 1642              	.LASF52:
+ 1643 05cc 75646250 		.ascii	"udbPresent\000"
+ 1643      72657365 
+ 1643      6E7400
+ 1644              	.LASF135:
+ 1645 05d7 72785374 		.ascii	"rxStatus\000"
+ 1645      61747573 
+ 1645      00
+ 1646              	.LASF32:
+ 1647 05e0 666C6173 		.ascii	"flashcVersion\000"
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 36
+
+
+ 1647      68635665 
+ 1647      7273696F 
+ 1647      6E00
+ 1648              	.LASF49:
+ 1649 05ee 736D6966 		.ascii	"smifDeviceNr\000"
+ 1649      44657669 
+ 1649      63654E72 
+ 1649      00
+ 1650              	.LASF127:
+ 1651 05fb 72616E67 		.ascii	"rangeIntrMask\000"
+ 1651      65496E74 
+ 1651      724D6173 
+ 1651      6B00
+ 1652              	.LASF100:
+ 1653 0609 63707573 		.ascii	"cpussRam0Ctl0\000"
+ 1653      7352616D 
+ 1653      3043746C 
+ 1653      3000
+ 1654              	.LASF107:
+ 1655 0617 666C6F61 		.ascii	"float\000"
+ 1655      7400
+ 1656              	.LASF71:
+ 1657 061d 64775374 		.ascii	"dwStatusChIdxMsk\000"
+ 1657      61747573 
+ 1657      43684964 
+ 1657      784D736B 
+ 1657      00
+ 1658              	.LASF155:
+ 1659 062e 63795F64 		.ascii	"cy_device\000"
+ 1659      65766963 
+ 1659      6500
+ 1660              	.LASF99:
+ 1661 0638 63707573 		.ascii	"cpussRomCtl\000"
+ 1661      73526F6D 
+ 1661      43746C00 
+ 1662              	.LASF160:
+ 1663 0644 43795F53 		.ascii	"Cy_SysPm_CpuEnterDeepSleep\000"
+ 1663      7973506D 
+ 1663      5F437075 
+ 1663      456E7465 
+ 1663      72446565 
+ 1664              	.LASF69:
+ 1665 065f 64774368 		.ascii	"dwChCtlPreemptablePos\000"
+ 1665      43746C50 
+ 1665      7265656D 
+ 1665      70746162 
+ 1665      6C65506F 
+ 1666              	.LASF145:
+ 1667 0675 74784C65 		.ascii	"txLeftToTransmit\000"
+ 1667      6674546F 
+ 1667      5472616E 
+ 1667      736D6974 
+ 1667      00
+ 1668              	.LASF123:
+ 1669 0686 6368616E 		.ascii	"chanEn\000"
+ 1669      456E00
+ 1670              	.LASF22:
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 37
+
+
+ 1671 068d 75646242 		.ascii	"udbBase\000"
+ 1671      61736500 
+ 1672              	.LASF113:
+ 1673 0695 43595F53 		.ascii	"CY_SAR_RANGE_COND_INSIDE\000"
+ 1673      41525F52 
+ 1673      414E4745 
+ 1673      5F434F4E 
+ 1673      445F494E 
+ 1674              	.LASF111:
+ 1675 06ae 5F426F6F 		.ascii	"_Bool\000"
+ 1675      6C00
+ 1676              	.LASF1:
+ 1677 06b4 756E7369 		.ascii	"unsigned char\000"
+ 1677      676E6564 
+ 1677      20636861 
+ 1677      7200
+ 1678              	.LASF65:
+ 1679 06c2 666C6173 		.ascii	"flashCtlMainWs4Freq\000"
+ 1679      6843746C 
+ 1679      4D61696E 
+ 1679      57733446 
+ 1679      72657100 
+ 1680              	.LASF104:
+ 1681 06d6 6970634C 		.ascii	"ipcLockStatusOffset\000"
+ 1681      6F636B53 
+ 1681      74617475 
+ 1681      734F6666 
+ 1681      73657400 
+ 1682              	.LASF83:
+ 1683 06ea 70657269 		.ascii	"periDiv24_5CtlOffset\000"
+ 1683      44697632 
+ 1683      345F3543 
+ 1683      746C4F66 
+ 1683      66736574 
+ 1684              	.LASF0:
+ 1685 06ff 73686F72 		.ascii	"short int\000"
+ 1685      7420696E 
+ 1685      7400
+ 1686              	.LASF128:
+ 1687 0709 6D757853 		.ascii	"muxSwitch\000"
+ 1687      77697463 
+ 1687      6800
+ 1688              	.LASF125:
+ 1689 0713 696E7472 		.ascii	"intrMask\000"
+ 1689      4D61736B 
+ 1689      00
+ 1690              	.LASF95:
+ 1691 071c 63707573 		.ascii	"cpussTrimRomCtlOffset\000"
+ 1691      73547269 
+ 1691      6D526F6D 
+ 1691      43746C4F 
+ 1691      66667365 
+ 1692              	.LASF76:
+ 1693 0732 70657269 		.ascii	"periDivCmdDivSelMsk\000"
+ 1693      44697643 
+ 1693      6D644469 
+ 1693      7653656C 
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 38
+
+
+ 1693      4D736B00 
+ 1694              	.LASF47:
+ 1695 0746 73727373 		.ascii	"srssNumHfroot\000"
+ 1695      4E756D48 
+ 1695      66726F6F 
+ 1695      7400
+ 1696              	.LASF60:
+ 1697 0754 666C6173 		.ascii	"flashEraseDelay\000"
+ 1697      68457261 
+ 1697      73654465 
+ 1697      6C617900 
+ 1698              	.LASF43:
+ 1699 0764 63707573 		.ascii	"cpussFmIrq\000"
+ 1699      73466D49 
+ 1699      727100
+ 1700              	.LASF75:
+ 1701 076f 70657269 		.ascii	"periTrGrSize\000"
+ 1701      54724772 
+ 1701      53697A65 
+ 1701      00
+ 1702              	.LASF98:
+ 1703 077c 63707573 		.ascii	"cpussCm4NmiCtlOffset\000"
+ 1703      73436D34 
+ 1703      4E6D6943 
+ 1703      746C4F66 
+ 1703      66736574 
+ 1704              	.LASF131:
+ 1705 0791 76726566 		.ascii	"vrefMvValue\000"
+ 1705      4D765661 
+ 1705      6C756500 
+ 1706              	.LASF161:
+ 1707 079d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1707      43313120 
+ 1707      352E342E 
+ 1707      31203230 
+ 1707      31363036 
+ 1708 07d0 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m0plus -mthumb -"
+ 1708      20726576 
+ 1708      6973696F 
+ 1708      6E203233 
+ 1708      37373135 
+ 1709 0803 67202D4F 		.ascii	"g -Og -ffunction-sections -ffat-lto-objects\000"
+ 1709      67202D66 
+ 1709      66756E63 
+ 1709      74696F6E 
+ 1709      2D736563 
+ 1710              	.LASF18:
+ 1711 082f 6C6F6E67 		.ascii	"long double\000"
+ 1711      20646F75 
+ 1711      626C6500 
+ 1712              	.LASF106:
+ 1713 083b 63686172 		.ascii	"char\000"
+ 1713      00
+ 1714              	.LASF62:
+ 1715 0840 666C6173 		.ascii	"flashCtlMainWs1Freq\000"
+ 1715      6843746C 
+ 1715      4D61696E 
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 39
+
+
+ 1715      57733146 
+ 1715      72657100 
+ 1716              	.LASF158:
+ 1717 0854 4144435F 		.ascii	"ADC_allConfigs\000"
+ 1717      616C6C43 
+ 1717      6F6E6669 
+ 1717      677300
+ 1718              	.LASF5:
+ 1719 0863 5F5F7569 		.ascii	"__uint16_t\000"
+ 1719      6E743136 
+ 1719      5F7400
+ 1720              	.LASF81:
+ 1721 086e 70657269 		.ascii	"periDiv16CtlOffset\000"
+ 1721      44697631 
+ 1721      3643746C 
+ 1721      4F666673 
+ 1721      657400
+ 1722              	.LASF34:
+ 1723 0881 6873696F 		.ascii	"hsiomVersion\000"
+ 1723      6D566572 
+ 1723      73696F6E 
+ 1723      00
+ 1724              	.LASF59:
+ 1725 088e 666C6173 		.ascii	"flashProgramDelay\000"
+ 1725      6850726F 
+ 1725      6772616D 
+ 1725      44656C61 
+ 1725      7900
+ 1726              	.LASF138:
+ 1727 08a0 72785269 		.ascii	"rxRingBufHead\000"
+ 1727      6E674275 
+ 1727      66486561 
+ 1727      6400
+ 1728              	.LASF137:
+ 1729 08ae 72785269 		.ascii	"rxRingBufSize\000"
+ 1729      6E674275 
+ 1729      6653697A 
+ 1729      6500
+ 1730              	.LASF152:
+ 1731 08bc 6D697363 		.ascii	"miscConfig\000"
+ 1731      436F6E66 
+ 1731      696700
+ 1732              	.LASF67:
+ 1733 08c7 64774368 		.ascii	"dwChSize\000"
+ 1733      53697A65 
+ 1733      00
+ 1734              	.LASF103:
+ 1735 08d0 69706353 		.ascii	"ipcStructSize\000"
+ 1735      74727563 
+ 1735      7453697A 
+ 1735      6500
+ 1736              	.LASF42:
+ 1737 08de 63707573 		.ascii	"cpussIpc0Irq\000"
+ 1737      73497063 
+ 1737      30497271 
+ 1737      00
+ 1738              	.LASF25:
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 40
+
+
+ 1739 08eb 6770696F 		.ascii	"gpioBase\000"
+ 1739      42617365 
+ 1739      00
+ 1740              	.LASF147:
+ 1741 08f4 696E6974 		.ascii	"initKey\000"
+ 1741      4B657900 
+ 1742              	.LASF140:
+ 1743 08fc 72784275 		.ascii	"rxBuf\000"
+ 1743      6600
+ 1744              	.LASF16:
+ 1745 0902 75696E74 		.ascii	"uint32_t\000"
+ 1745      33325F74 
+ 1745      00
+ 1746              	.LASF148:
+ 1747 090b 63795F73 		.ascii	"cy_stc_scb_uart_context_t\000"
+ 1747      74635F73 
+ 1747      63625F75 
+ 1747      6172745F 
+ 1747      636F6E74 
+ 1748              	.LASF122:
+ 1749 0925 72616E67 		.ascii	"rangeCond\000"
+ 1749      65436F6E 
+ 1749      6400
+ 1750              	.LASF44:
+ 1751 092f 63707573 		.ascii	"cpussNotConnectedIrq\000"
+ 1751      734E6F74 
+ 1751      436F6E6E 
+ 1751      65637465 
+ 1751      64497271 
+ 1752              	.LASF58:
+ 1753 0944 666C6173 		.ascii	"flashWriteDelay\000"
+ 1753      68577269 
+ 1753      74654465 
+ 1753      6C617900 
+ 1754              	.LASF118:
+ 1755 0954 73616D70 		.ascii	"sampleCtrl\000"
+ 1755      6C654374 
+ 1755      726C00
+ 1756              	.LASF13:
+ 1757 095f 75696E74 		.ascii	"uint8_t\000"
+ 1757      385F7400 
+ 1758              	.LASF109:
+ 1759 0967 43595F53 		.ascii	"CY_SYSPM_WAIT_FOR_INTERRUPT\000"
+ 1759      5953504D 
+ 1759      5F574149 
+ 1759      545F464F 
+ 1759      525F494E 
+ 1760              	.LASF91:
+ 1761 0983 63707573 		.ascii	"cpussCm4StatusOffset\000"
+ 1761      73436D34 
+ 1761      53746174 
+ 1761      75734F66 
+ 1761      66736574 
+ 1762              	.LASF84:
+ 1763 0998 6770696F 		.ascii	"gpioPrtIntrCfgOffset\000"
+ 1763      50727449 
+ 1763      6E747243 
+ARM GAS  C:\Users\petro\AppData\Local\Temp\cckViWsb.s 			page 41
+
+
+ 1763      66674F66 
+ 1763      66736574 
+ 1764              	.LASF115:
+ 1765 09ad 43595F53 		.ascii	"CY_SAR_RANGE_COND_OUTSIDE\000"
+ 1765      41525F52 
+ 1765      414E4745 
+ 1765      5F434F4E 
+ 1765      445F4F55 
+ 1766              	.LASF139:
+ 1767 09c7 72785269 		.ascii	"rxRingBufTail\000"
+ 1767      6E674275 
+ 1767      66546169 
+ 1767      6C00
+ 1768              	.LASF149:
+ 1769 09d5 6368616E 		.ascii	"channelBase\000"
+ 1769      6E656C42 
+ 1769      61736500 
+ 1770              	.LASF134:
+ 1771 09e1 74785374 		.ascii	"txStatus\000"
+ 1771      61747573 
+ 1771      00
+ 1772              	.LASF129:
+ 1773 09ea 6D757853 		.ascii	"muxSwitchSqCtrl\000"
+ 1773      77697463 
+ 1773      68537143 
+ 1773      74726C00 
+ 1774              	.LASF31:
+ 1775 09fa 64775665 		.ascii	"dwVersion\000"
+ 1775      7273696F 
+ 1775      6E00
+ 1776              	.LASF27:
+ 1777 0a04 69706342 		.ascii	"ipcBase\000"
+ 1777      61736500 
+ 1778              	.LASF165:
+ 1779 0a0c 6D61696E 		.ascii	"main\000"
+ 1779      00
+ 1780              	.LASF164:
+ 1781 0a11 63795F73 		.ascii	"cy_stc_scb_uart_context\000"
+ 1781      74635F73 
+ 1781      63625F75 
+ 1781      6172745F 
+ 1781      636F6E74 
+ 1782              	.LASF29:
+ 1783 0a29 63707573 		.ascii	"cpussVersion\000"
+ 1783      73566572 
+ 1783      73696F6E 
+ 1783      00
+ 1784              	.LASF56:
+ 1785 0a36 666C6173 		.ascii	"flashRwwRequired\000"
+ 1785      68527777 
+ 1785      52657175 
+ 1785      69726564 
+ 1785      00
+ 1786              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

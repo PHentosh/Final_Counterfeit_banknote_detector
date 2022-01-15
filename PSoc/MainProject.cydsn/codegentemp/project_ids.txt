@@ -1,0 +1,14 @@
+C:\Users\petro\Documents\PSoC Creator\Tests\TFTDisplay.cydsn\TFTDisplay.cyprj|b93dfd30-dc51-42cf-82cf-db5ff1ed0dac
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|728a1dcd-03f7-49c6-9cec-18e775f108ae
+C:\Users\petro\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|e61bcbd3-7548-4cf0-b913-56113f912e14
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|d66a50eb-8748-4485-9624-1ba3a4303ec3
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|75387d33-fc0a-46a9-8620-8141ce082500
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|2a7c02ca-fd5c-4704-aaac-d601c3dec6db
+C:\Users\petro\Documents\PSoC Creator\Tests\oiuy.cydsn\oiuy.cyprj|ed10fa94-adb8-43ae-a0e4-619fec052187
+C:\Users\petro\Documents\PSoC Creator\Tests\EmWin_TFT_Display.cydsn\EmWin_TFT_Display.cyprj|6e88d051-6569-4665-9816-c93e1061ad08
+C:\Users\petro\Documents\PSoC Creator\Tests\Wifi_Test.cydsn\Wifi_Test.cyprj|1003de80-a186-4f22-8798-d652756d70a3
+C:\Users\petro\Documents\PSoC Creator\Tests\Analog_Voltage_Comparator01.cydsn\Analog_Voltage_Comparator01.cyprj|2414f273-bde9-4344-9909-0fb6db51f8f1
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|835ce22b-2f0a-4301-8215-387b8f81d223
+C:\Users\petro\Documents\PSoC Creator\Tests\Hall4928.cydsn\Hall4928.cyprj|e44d8651-bf37-4e81-aee7-dba5b0b95789
+C:\Users\petro\Documents\PSoC Creator\Tests\UART.cydsn\UART.cyprj|d557bff3-6e93-4a0d-a563-043e7974fbe7
+C:\Users\petro\Documents\PSoC Creator\Tests\MainProject.cydsn\MainProject.cyprj|ff89a6c8-013b-48e5-8b10-7b57b5196ba8
